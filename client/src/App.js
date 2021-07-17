@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { Desktop, Mobile } from "./Assets/MediaQuery/MediaQuery";
+import GlobalCss from "./Components/Common/GlobalCss";
+import Routes from './Routes/Routes';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalCss />
+      {/* 모바일 */}
+      <Mobile>
+        <Routes />
+      </Mobile>
+      {/* 데스크톱 */}
+      <Desktop>
+        모바일만 되지롱 ~ 
+      </Desktop>
+      
+    </>
   );
 }
 
