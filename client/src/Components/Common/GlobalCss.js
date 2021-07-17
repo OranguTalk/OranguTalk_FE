@@ -1,5 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+import { MainBlack } from '../../Assets/Color/Color';
 
 const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -50,8 +51,10 @@ table {
 	border-spacing: 0;
 }
 html{
-  font-size: 18px;
-  font-family: "Spoqa-Light";
+  /* 폰트 기본값 설정  */
+  font-size: 12px;
+  font-family: "Kakao-Regular";
+  color : ${MainBlack};
 }
 `;
 

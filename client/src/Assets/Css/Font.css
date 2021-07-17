@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Kakao-Bold';
+    src: local('Kakao-Bold'),
+      url('../Font/KakaoBold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Kakao-Regular';
+    src: local('Kakao-Regular'),
+      url('../Font/KakaoRegular.ttf') format('truetype');
+  }
