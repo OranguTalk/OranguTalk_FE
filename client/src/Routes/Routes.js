@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Main from '../Components/Main/Main';
-import Main2 from '../Components/Main2/Main2';
+import Chat from '../Pages/Chat/Chat';
+import Main from '../Pages/Main/Main';
 
 const Routes = () => {
   return (
@@ -10,8 +10,7 @@ const Routes = () => {
         {/* 메인 */}
         <Route path="/" exact component={Main} />
         {/* 그 외 라우터는 이 밑으로 연결 */}
-        {/* 예시 url */}
-        <Route path="/main2" component={Main2} />
+        <Route path="/chat" component={Chat} />
       </Switch>
     </Router>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 
-function Main2() {
+function Profile() {
   return <div></div>;
 }
 
-export default Main2;
+export default Profile;
