@@ -16,7 +16,8 @@
 
 ## UI
 
-- [Figma - Wireframe + Moodboard](https://www.figma.com/file/UPzsSSgnkukM7iRw5HsDwp/Design?node-id=0%3A1)
+- [Moodboard](https://www.figma.com/proto/UPzsSSgnkukM7iRw5HsDwp/Design?node-id=6%3A100&scaling=min-zoom&page-id=0%3A1)
+- [Wireframe](https://www.figma.com/proto/UPzsSSgnkukM7iRw5HsDwp/Design?node-id=33%3A12&scaling=scale-down&page-id=6%3A227)
 
 ## Tech Stack
 
