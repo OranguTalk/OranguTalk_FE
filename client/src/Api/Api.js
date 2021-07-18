@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Api() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return <div></div>;
 }
 
-export default Api
+export default Api;

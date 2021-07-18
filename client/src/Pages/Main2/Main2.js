@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Main2() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return <div></div>;
 }
 
-export default Main2
+export default Main2;

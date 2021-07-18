@@ -1,7 +1,7 @@
-import { Desktop, Mobile } from "./Assets/MediaQuery/MediaQuery";
-import GlobalCss from "./Components/Common/GlobalCss";
+import { Desktop, Mobile } from './Assets/MediaQuery/MediaQuery';
+import GlobalCss from './Components/Common/GlobalCss';
 import Routes from './Routes/Routes';
-import {ReactComponent as TextPicLogo} from '../src/Assets/Logo/TextPicLogo.svg';
+import { ReactComponent as TextPicLogo } from '../src/Assets/Logo/TextPicLogo.svg';
 function App() {
   return (
     <>
@@ -13,9 +13,8 @@ function App() {
       {/* 데스크톱 */}
       <Desktop>
         <TextPicLogo />
-        모바일만 되지롱 ~ 
+        모바일만 되지롱 ~
       </Desktop>
-      
     </>
   );
 }
