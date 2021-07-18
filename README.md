@@ -16,7 +16,7 @@
 
 ## UI
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="600" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FUPzsSSgnkukM7iRw5HsDwp%2FDesign%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
+- [Figma - Wireframe + Moodboard](https://www.figma.com/file/UPzsSSgnkukM7iRw5HsDwp/Design?node-id=0%3A1)
 
 ## Tech Stack
 
