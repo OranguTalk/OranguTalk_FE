@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Guide1 from '../../Components/Guide/Guide1';
 import Guide2 from '../../Components/Guide/Guide2';
 import Guide3 from '../../Components/Guide/Guide3';
-import Fade from 'react-reveal/Fade';
 import Guide4 from '../../Components/Guide/Guide4';
 import Login from '../Login/Login';
 

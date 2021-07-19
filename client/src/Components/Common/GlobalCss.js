@@ -1,8 +1,10 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { MainBlack } from '../../Assets/Color/Color';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useRecoilValue } from 'recoil';
+
+import { modeState } from '../../Recoil/ThemeMode';
 
 const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -56,12 +58,20 @@ html{
   /* 폰트 기본값 설정  */
   font-size: 12px;
   font-family: "Kakao-Regular";
-  color : ${MainBlack};
+  // props 로 받은 색 적용 
+  color : ${(props) => props.textColor};
+  background-color : ${(props) => props.bgColor};
 }
 `;
-
 const GlobalCss = () => {
-  return <GlobalStyle />;
+  // 현재 모드 가져오기
+  const current = useRecoilValue(modeState);
+  // 현재 모드의 배경색 저장
+  const bgColor = current.bgColor;
+  // 현재 모드의 텍스트 색 저장
+  const textColor = current.textColor;
+  // props 형태로 색깔 전달
+  return <GlobalStyle bgColor={bgColor} textColor={textColor} />;
 };
 
 export default GlobalCss;
