@@ -13,6 +13,7 @@ const Container = styled.div`
 const InputBox = styled.input`
   width: 70%;
   font-size: 1.5rem;
+  font-family: 'Kakao-Regular';
   background-color: transparent;
   padding: 0 10%;
   border: 0;

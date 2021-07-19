@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MainYellow } from '../../../Assets/Color/Color';
+import { useRecoilValue } from 'recoil';
+import { modeState } from '../../../Recoil/ThemeMode';
 
 const Container = styled.div`
   display: flex;
@@ -18,6 +20,7 @@ const ProfileContent = styled.span`
   background-color: ${MainYellow};
   border-radius: 12px;
   margin-right: 5%;
+  color: ${(props) => props.textColor2};
 `;
 
 const TimeText = styled.div`
@@ -25,10 +28,12 @@ const TimeText = styled.div`
 `;
 
 const My = ({ chat, time }) => {
+  const current = useRecoilValue(modeState);
+  const textColor2 = current.textColor2;
   return (
     <Container>
       <TimeText>{time}</TimeText>
-      <ProfileContent>{chat}</ProfileContent>
+      <ProfileContent textColor2={textColor2}>{chat}</ProfileContent>
     </Container>
   );
 };
