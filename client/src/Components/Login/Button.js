@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Btn = styled.button`
+const Btn = styled.a`
   width: 200px;
   height: 40px;
   font-size: 1.5rem;
@@ -11,5 +11,5 @@ const Btn = styled.button`
 `;
 
 export default function Button() {
-  return <Btn>Github Login</Btn>;
+  return <Btn href="http://localhost:5000/auth/github">Github Login</Btn>;
 }
