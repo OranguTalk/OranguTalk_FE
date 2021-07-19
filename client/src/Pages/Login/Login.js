@@ -26,9 +26,7 @@ function Login() {
     <LoginDiv>
       <img src={LoadingLogo} alt="LoadingLogo" width="200" />
       <div>
-        <Link to="/">
-          <Button>Github</Button>
-        </Link>
+        <Button>Github</Button>
       </div>
     </LoginDiv>
   );
