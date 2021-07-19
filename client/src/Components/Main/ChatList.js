@@ -6,14 +6,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import ToggleBtn from '../Button/ToggleBtn';
+
+import { useRecoilValue } from 'recoil';
+import { modeState } from '../../Recoil/ThemeMode';
 
 const ChatListDIv = styled.div`
   margin: 0 auto;
   width: 360px;
   height: 530px;
-  background-color: #f4f4f4;
+  background-color: ${(props) => props.bgColor2};
   border-radius: 40px 40px 0 0;
+  bottom: 0;
   & > p {
     margin: 0 auto;
     display: flex;
@@ -69,6 +72,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ChatList() {
+  const current = useRecoilValue(modeState);
+  const bgColor2 = current.bgColor2;
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -81,7 +87,7 @@ function ChatList() {
   };
 
   return (
-    <ChatListDIv>
+    <ChatListDIv bgColor2={bgColor2}>
       <p>
         <p>채팅</p>
         <p onClick={handleOpen}>+</p>
@@ -104,7 +110,6 @@ function ChatList() {
         </Fade>
       </Modal>
       <List />
-      <ToggleBtn />
     </ChatListDIv>
   );
 }
