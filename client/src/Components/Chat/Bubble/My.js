@@ -23,11 +23,11 @@ const TimeText = styled.div`
   margin-right: 5px;
 `;
 
-const My = () => {
+const My = ({ chat, time }) => {
   return (
     <Container>
-      <TimeText>07:23</TimeText>
-      <ProfileContent>gdgdgdgdgdgdgd</ProfileContent>
+      <TimeText>{time}</TimeText>
+      <ProfileContent>{chat}</ProfileContent>
     </Container>
   );
 };

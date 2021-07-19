@@ -2,12 +2,11 @@ import React from 'react';
 import Header from '../../Components/Chat/Header';
 import styled from 'styled-components';
 import Chatroom from '../../Components/Chat/Chatroom';
+import Chatinput from '../../Components/Chat/Chatinput';
 
 const Container = styled.div`
-  width: 100%;
-  height: 640px;
-  overflow-x: hidden;
-  border: 1px solid black;
+  width: 100vw;
+  overflow-y: hidden;
 `;
 
 const Chat = () => {
@@ -15,6 +14,7 @@ const Chat = () => {
     <Container>
       <Header />
       <Chatroom />
+      <Chatinput />
     </Container>
   );
 };
