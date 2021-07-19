@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Orang from '../../../Assets/Logo/CircleOrang.svg';
 const Container = styled.div`
@@ -31,10 +31,19 @@ const ProfileImg = styled.img`
   border-radius: 25px;
 `;
 
+// 이미지 최대 출력
+const ContentImg = styled.img`
+  padding: 10px 13px;
+  background-color: #e4e4e4;
+  border-radius: 12px;
+  max-width: 150px;
+  max-height: 150px;
+`;
+
 const ProfileContent = styled.span`
   padding: 10px 13px;
   font-size: 1.1rem;
-  background-color: #f4f4f4;
+  background-color: #e4e4e4;
   border-radius: 12px;
   max-width: 50%;
 `;
@@ -44,13 +53,30 @@ const TimeText = styled.div`
 `;
 
 const Other = ({ avatar, username, chat, time }) => {
+  const [isImage, SetisImage] = useState(false);
+
+  // 이미지 확장자 확인하기
+  const IsImageType = () => {
+    const result =
+      chat.includes('jpg') || chat.includes('jpeg') || chat.includes('png');
+    SetisImage(result);
+  };
+
+  useEffect(() => {
+    IsImageType();
+  }, []);
+
   return (
     <Container>
       <ProfileImg src={Orang} />
       <ChatContainer>
         <UserName>{username}</UserName>
         <ContentContainer>
-          <ProfileContent>{chat}</ProfileContent>
+          {isImage ? (
+            <ContentImg src={chat} />
+          ) : (
+            <ProfileContent>{chat}</ProfileContent>
+          )}
           <TimeText>{time}</TimeText>
         </ContentContainer>
       </ChatContainer>
