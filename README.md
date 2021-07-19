@@ -20,10 +20,6 @@
 2. npm i - 종속성 다운로드
 3. npm start - 서버 실행
 
-## Demo
-
-![OranuTalkIntro2](https://user-images.githubusercontent.com/64029753/126221512-3a145fa4-3a5b-4d57-a216-8980e8a7e58e.gif)
-
 ## UI
 
 - [Moodboard](https://www.figma.com/proto/UPzsSSgnkukM7iRw5HsDwp/Design?node-id=6%3A100&scaling=min-zoom&page-id=0%3A1)
