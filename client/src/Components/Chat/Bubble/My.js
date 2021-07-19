@@ -6,13 +6,14 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  margin: 3% 0;
+  margin: 3% auto;
   width: 100%;
-  text-align: right;
 `;
 
 const ProfileContent = styled.span`
-  padding: 10px 13px;
+  display: inline-block;
+  max-width: 50%;
+  padding: 10px 8px;
   font-size: 1.1rem;
   background-color: ${MainYellow};
   border-radius: 12px;

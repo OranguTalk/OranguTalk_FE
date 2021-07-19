@@ -5,14 +5,13 @@ import Chatroom from '../../Components/Chat/Chatroom';
 import Chatinput from '../../Components/Chat/Chatinput';
 
 const Container = styled.div`
-  width: 100vw;
-  overflow-y: hidden;
+  width: 100%;
 `;
 
 const Chat = () => {
   return (
     <Container>
-      <Header />
+      <Header roomname={'오랑이'} />
       <Chatroom />
       <Chatinput />
     </Container>
