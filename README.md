@@ -22,5 +22,7 @@
 ## Tech Stack
 
 - react
-- redux-saga
+- recoil
 - styled-components
+- react-slink
+- react-reveal
