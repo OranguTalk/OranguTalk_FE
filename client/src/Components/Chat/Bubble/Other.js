@@ -36,6 +36,7 @@ const ProfileContent = styled.span`
   font-size: 1.1rem;
   background-color: #f4f4f4;
   border-radius: 12px;
+  max-width: 50%;
 `;
 
 const TimeText = styled.div`

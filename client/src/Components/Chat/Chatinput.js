@@ -40,6 +40,10 @@ const Chatinput = () => {
     setChat(e.target.value);
   };
 
+  const handleSendmessage = (e) => {
+    setChat('');
+  };
+
   return (
     <Container>
       <InputBox
@@ -47,7 +51,7 @@ const Chatinput = () => {
         onChange={onChangeChatText}
         placeholder="대화를 입력해주세요.."
       />
-      <SendIcon onClick=""></SendIcon>
+      <SendIcon onClick={handleSendmessage}></SendIcon>
     </Container>
   );
 };

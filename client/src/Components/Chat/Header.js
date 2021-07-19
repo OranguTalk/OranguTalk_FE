@@ -5,13 +5,17 @@ import { ReactComponent as ArrowLeft } from '../../Assets/Image/arrow-left.svg';
 const Container = styled.div`
   width: 100%;
   height: 10vh;
-
-  display: flex;
-  align-items: center;
-
   background-color: #ffffff;
-  padding: 5% 10%;
+  /* padding: 5% 10%; */
   /* {props => props.color === 'light' ? #ffffff : } */
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  width: 90%;
+  height: 100%;
+  align-items: center;
+  margin: 0 auto;
 `;
 
 const Text = styled.span`
@@ -20,11 +24,13 @@ const Text = styled.span`
   margin-left: 15px;
 `;
 
-const Header = () => {
+const Header = ({ roomname }) => {
   return (
     <Container>
-      <ArrowLeft width={25} height={25} />
-      <Text>오랑이</Text>
+      <ContentContainer>
+        <ArrowLeft width={25} height={25} />
+        <Text>{roomname}</Text>
+      </ContentContainer>
     </Container>
   );
 };
