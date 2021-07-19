@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MainYellow } from '../../Assets/Color/Color';
 import Sendicon from '../../Assets/Image/Sendicon.svg';
