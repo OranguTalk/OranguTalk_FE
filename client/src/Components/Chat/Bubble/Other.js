@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Orang from '../../../Assets/Logo/CircleOrang.svg';
+import { useRecoilValue } from 'recoil';
+import { modeState } from '../../../Recoil/ThemeMode';
+
 const Container = styled.div`
   display: flex;
   margin: 3% 0 3% 5%;
@@ -46,6 +49,7 @@ const ProfileContent = styled.span`
   background-color: #e4e4e4;
   border-radius: 12px;
   max-width: 50%;
+  color: ${(props) => props.textColor2};
 `;
 
 const TimeText = styled.div`
@@ -61,6 +65,8 @@ const Other = ({ avatar, username, chat, time }) => {
       chat.includes('jpg') || chat.includes('jpeg') || chat.includes('png');
     SetisImage(result);
   };
+  const current = useRecoilValue(modeState);
+  const textColor2 = current.textColor2;
 
   useEffect(() => {
     IsImageType();
@@ -75,7 +81,7 @@ const Other = ({ avatar, username, chat, time }) => {
           {isImage ? (
             <ContentImg src={chat} />
           ) : (
-            <ProfileContent>{chat}</ProfileContent>
+            <ProfileContent textColor2={textColor2}>{chat}</ProfileContent>
           )}
           <TimeText>{time}</TimeText>
         </ContentContainer>

@@ -9,6 +9,8 @@ export const LightState = atom({
     textColor: '#4B5364',
     // 채팅 리스트 배경색
     bgColor2: '#F4F4F4',
+    // 채팅 글씨색
+    textColor2: '#4B5364',
   },
 });
 
@@ -21,6 +23,8 @@ export const DarkState = atom({
     bgColor2: 'white',
     // 채팅 리스트 배경색
     textColor: 'white',
+    // 채팅 글씨색
+    textColor2: '#4B5364',
   },
 });
 
