@@ -7,10 +7,21 @@ import { modeState } from '../../Recoil/ThemeMode';
 import ToggleBtn from '../Button/ToggleBtn';
 
 const ProfileDiv = styled.div`
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  width: 100%;
-  padding: 20px;
+  width: 80%;
+  height: 20%;
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    margin-right: 15px;
+    height: 80px;
+    /* text-align: center; */
+  }
 `;
 
 const TestImg = styled.img`
@@ -20,11 +31,9 @@ const TestImg = styled.img`
 `;
 // 텍스트 div
 const TextDiv = styled.div`
-  width: 60%;
-  padding: 15px;
-
+  display: flex;
   /* 사용자이름 */
-  & > p:nth-child(1) {
+  & p:nth-child(1) {
     font-family: 'Kakao-Bold';
     font-size: 1.4rem;
     color: ${(props) => props.textColor};
@@ -33,11 +42,22 @@ const TextDiv = styled.div`
   /* 깃허브 로그인 표시  */
   & > p:nth-child(2) {
     display: flex;
-    align-items: center;
   }
   /* 깃허브 글씨 */
   & > p:nth-child(2) p {
-    margin-left: 5px;
+    margin-left: 6px;
+  }
+  & > a:visited {
+    color: ${(props) => props.textColor};
+    text-decoration: none;
+  }
+  & > a:link {
+    color: ${(props) => props.textColor};
+    text-decoration: none;
+  }
+  & > a:active {
+    color: ${(props) => props.textColor};
+    text-decoration: none;
   }
 `;
 
@@ -45,11 +65,17 @@ function Profile() {
   const current = useRecoilValue(modeState);
   const bgColor = current.bgColor;
   const textColor = current.textColor;
+  const userName = 'qhahd78';
+  const profileLink = `https://github.com/${userName}`;
   return (
     <ProfileDiv>
-      <TestImg src={Test} alt="test_img" />
+      <div>
+        <TestImg src={Test} alt="test_img" />
+      </div>
       <TextDiv bgColor={bgColor} textColor={textColor}>
-        <p>qhahd78</p>
+        <a href={profileLink}>
+          <p>{userName}</p>
+        </a>
         <p>
           <img src={GreenCircle} alt="circle" />
           <p>github</p>

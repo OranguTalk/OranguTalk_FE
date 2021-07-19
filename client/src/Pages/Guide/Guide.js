@@ -17,7 +17,7 @@ const GuideDiv = styled.div`
 function Guide() {
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToshow: 1,
     slidesToScroll: 1,

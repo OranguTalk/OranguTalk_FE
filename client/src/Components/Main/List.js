@@ -7,12 +7,13 @@ const ChatDiv = styled.div`
   margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: space-around;
   width: 300px;
   height: 70px;
 
   & > div {
-    width: 200px;
-    margin-left: 15px;
+    width: 220px;
+    /* margin-left: 15px; */
   }
 
   & > div > p:nth-child(1) {

@@ -9,7 +9,8 @@ const Btn = styled.button`
   font-size: 1.5rem;
   font-family: 'Kakao-Regular';
   border-radius: 20px;
-  border-color: ${(props) => props.textColor};
+  border-style: none;
+  // props 로 받은 컬러 값을 반영한다.
   background-color: ${(props) => props.textColor};
   color: ${(props) => props.bgColor};
   position: absolute;
@@ -19,7 +20,7 @@ const Btn = styled.button`
 
 function ToggleBtn() {
   // 현재 mode 판별 state
-  const [BtnName, setBtnName] = useState('LIGHT');
+  const [BtnName, setBtnName] = useState('DARK');
   const [Theme, setTheme] = useRecoilState(modeState);
   // lightmode 배열 값 불러오기
   const lightmode = useRecoilValue(LightState);

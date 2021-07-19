@@ -8,7 +8,7 @@ const LogoPageDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 640px;
+  height: 100vh;
 `;
 
 function LogoPage() {
