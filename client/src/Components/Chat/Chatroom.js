@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import My from './Bubble/My';
 import Other from './Bubble/Other';
+import Statusbar from './Statusbar';
 
 const Container = styled.div`
   height: 80vh;
@@ -11,6 +12,7 @@ const Container = styled.div`
 const Chatroom = () => {
   return (
     <Container>
+      <Statusbar username={'민석이'} />
       <Other
         username={'오랑이'}
         chat={
@@ -18,6 +20,22 @@ const Chatroom = () => {
         }
         time={'07:23'}
       />
+      <My
+        chat={
+          '난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 '
+        }
+        time={'07:23'}
+      />
+      <Other username={'오랑이'} chat={'새침때기ㅋ'} time={'07:23'} />
+      <My chat={'ㄲㅈ'} time={'07:23'} />
+      <My
+        chat={
+          '난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 '
+        }
+        time={'07:23'}
+      />
+      <Other username={'오랑이'} chat={'새침때기ㅋ'} time={'07:23'} />
+      <My chat={'ㄲㅈ'} time={'07:23'} />
       <My
         chat={
           '난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 난 아니니까 저리가 '
