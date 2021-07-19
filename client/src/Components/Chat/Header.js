@@ -4,7 +4,7 @@ import { MainBlack } from '../../Assets/Color/Color';
 import { ReactComponent as ArrowLeft } from '../../Assets/Image/arrow-left.svg';
 const Container = styled.div`
   width: 100%;
-  height: 50px;
+  height: 10vh;
 
   display: flex;
   align-items: center;
