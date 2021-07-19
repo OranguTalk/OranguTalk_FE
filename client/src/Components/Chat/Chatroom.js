@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import My from './Bubble/My';
 import Other from './Bubble/Other';
 import Statusbar from './Statusbar';
+import Test from '../../Assets/Image/Test.jpg';
 
 const Container = styled.div`
   height: 80vh;
@@ -26,7 +27,7 @@ const Chatroom = () => {
         }
         time={'07:23'}
       />
-      <Other username={'오랑이'} chat={'새침때기ㅋ'} time={'07:23'} />
+      <Other username={'오랑이'} chat={Test} time={'07:23'} />
       <My chat={'ㄲㅈ'} time={'07:23'} />
       <My
         chat={
