@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { GithubLoginAPI } from '../../Api/Social/Social';
 
-const Btn = styled.a`
+const Btn = styled.button`
   width: 200px;
   height: 40px;
   font-size: 1.5rem;
@@ -11,5 +12,9 @@ const Btn = styled.a`
 `;
 
 export default function Button() {
-  return <Btn href="http://localhost:5000/auth/github">Github Login</Btn>;
+  const handleGithubLogin = () => {
+    window.location.href = 'http://localhost:5000/auth/github';
+  };
+
+  return <Btn>Github Login</Btn>;
 }
