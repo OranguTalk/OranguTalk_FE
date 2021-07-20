@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { LightState, DarkState, modeState } from '../../Recoil/ThemeMode';
-import Slide from 'react-reveal/Slide';
 
 const Btn = styled.button`
   width: 38px;
