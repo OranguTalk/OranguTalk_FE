@@ -10,9 +10,9 @@ const ProfileDiv = styled.div`
   margin: 0 auto;
   display: flex;
   align-items: center;
-  width: 80%;
-  height: 20vh;
-  & > div {
+  width: 90%;
+  height: 15vh;
+  & > div:nth-child(1) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,6 +32,7 @@ const TestImg = styled.img`
 // 텍스트 div
 const TextDiv = styled.div`
   display: flex;
+  flex-direction: column;
   /* 사용자이름 */
   & p:nth-child(1) {
     font-family: 'Kakao-Bold';
