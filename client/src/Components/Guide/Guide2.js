@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import phone1 from '../../Assets/Image/phone1.svg';
-import Fade from 'react-reveal/Fade';
 
 const Guide2Div = styled.div`
   font-size: 1.8rem;

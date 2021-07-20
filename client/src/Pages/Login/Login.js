@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '../../Components/Login/Button';
-import { Link } from 'react-router-dom';
 import LoadingLogo from '../../Assets/Logo/LoadingLogo.svg';
 import styled from 'styled-components';
 

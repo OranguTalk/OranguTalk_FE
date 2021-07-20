@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Fade from 'react-reveal/Fade';
 
 const Guide1Div = styled.div`
   font-size: 2.3rem;
