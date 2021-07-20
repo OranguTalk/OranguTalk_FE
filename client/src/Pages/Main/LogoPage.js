@@ -29,11 +29,11 @@ function LogoPage() {
     };
   });
   return (
-    <Flip bottom>
-      <LogoPageDiv>
-        <img src={LoadingLogo} alt="Logo" />
-      </LogoPageDiv>
-    </Flip>
+    <LogoPageDiv>
+      <Flip bottom>
+        <img src={LoadingLogo} alt="Logo" width={200} height={200} />
+      </Flip>
+    </LogoPageDiv>
   );
 }
 

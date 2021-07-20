@@ -7,7 +7,7 @@ const Guide2Div = styled.div`
   font-size: 1.8rem;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -21,19 +21,13 @@ const Guide2Div = styled.div`
 `;
 
 function Guide2() {
-  const [animate, setAnimate] = useState(false);
-  useEffect(() => {
-    setAnimate(true);
-  }, []);
   return (
     <Guide2Div>
       <p>
         여러분을 기다리고 있는 귀여운 <br />
         오랑이와 대화해보세요 !
       </p>
-      <Fade bottom when={animate}>
-        <img src={phone1} alt="chat1" />
-      </Fade>
+      <img src={phone1} alt="chat1" />
     </Guide2Div>
   );
 }

@@ -8,7 +8,7 @@ const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 640px;
+  /* height: 640px; */
 `;
 
 function Main() {
