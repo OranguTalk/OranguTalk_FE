@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MainBlack } from '../../Assets/Color/Color';
 import { ReactComponent as ArrowLeft } from '../../Assets/Image/arrow-left.svg';
 import { useHistory } from 'react-router-dom';
 import ToggleBtn from '../Button/ToggleBtn';

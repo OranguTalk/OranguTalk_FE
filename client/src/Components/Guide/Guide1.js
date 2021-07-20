@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Fade from 'react-reveal/Fade';
 
 const Guide1Div = styled.div`
   font-size: 2.3rem;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -18,16 +16,12 @@ const Guide1Div = styled.div`
 `;
 
 function Guide1() {
-  const [animate, setAnimate] = useState(false);
-  useEffect(() => {
-    setAnimate(true);
-  }, []);
   return (
     <Guide1Div>
-      <Fade bottom when={animate}>
-        <p>오랑우톡에 오신 것을</p>
-        <p>환영합니다 !</p>
-      </Fade>
+      {/* <Fade bottom when={animate}> */}
+      <p>오랑우톡에 오신 것을</p>
+      <p>환영합니다 !</p>
+      {/* </Fade> */}
     </Guide1Div>
   );
 }

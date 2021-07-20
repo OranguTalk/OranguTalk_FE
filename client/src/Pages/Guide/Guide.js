@@ -11,7 +11,8 @@ const GuideDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 580px;
+  height: 92vh;
+  width: 360px;
 `;
 
 function Guide() {
@@ -24,25 +25,23 @@ function Guide() {
   };
   return (
     <>
-      <div>
-        <Slider {...settings}>
-          <GuideDiv>
-            <Guide1 />
-          </GuideDiv>
-          <GuideDiv>
-            <Guide2 />
-          </GuideDiv>
-          <GuideDiv>
-            <Guide3 />
-          </GuideDiv>
-          <GuideDiv>
-            <Guide4 />
-          </GuideDiv>
-          <GuideDiv>
-            <Login />
-          </GuideDiv>
-        </Slider>
-      </div>
+      <Slider {...settings}>
+        <GuideDiv>
+          <Guide1 />
+        </GuideDiv>
+        <GuideDiv>
+          <Guide2 />
+        </GuideDiv>
+        <GuideDiv>
+          <Guide3 />
+        </GuideDiv>
+        <GuideDiv>
+          <Guide4 />
+        </GuideDiv>
+        <GuideDiv>
+          <Login />
+        </GuideDiv>
+      </Slider>
     </>
   );
 }

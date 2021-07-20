@@ -7,6 +7,8 @@ export const LightState = atom({
     mode: 'light',
     bgColor: 'white',
     textColor: '#4B5364',
+    // 버튼 색
+    btnbgColor: '#383737',
     // 채팅 리스트 배경색
     bgColor2: '#F4F4F4',
     // 채팅 글씨색
@@ -21,6 +23,8 @@ export const DarkState = atom({
     mode: 'dark',
     bgColor: '#383737',
     bgColor2: 'white',
+    // 버튼 색
+    btnbgColor: 'white',
     // 채팅 리스트 배경색
     textColor: 'white',
     // 채팅 글씨색

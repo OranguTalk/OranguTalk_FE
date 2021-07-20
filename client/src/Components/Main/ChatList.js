@@ -13,7 +13,7 @@ import { modeState } from '../../Recoil/ThemeMode';
 const ChatListDIv = styled.div`
   margin: 0 auto;
   width: 360px;
-  height: 530px;
+  height: 80vh;
   background-color: ${(props) => props.bgColor2};
   border-radius: 40px 40px 0 0;
   bottom: 0;

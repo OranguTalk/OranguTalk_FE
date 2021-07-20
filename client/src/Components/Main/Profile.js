@@ -11,7 +11,7 @@ const ProfileDiv = styled.div`
   display: flex;
   align-items: center;
   width: 80%;
-  height: 20%;
+  height: 20vh;
   & > div {
     display: flex;
     flex-direction: column;

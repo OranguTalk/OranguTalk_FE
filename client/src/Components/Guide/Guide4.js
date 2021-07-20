@@ -5,7 +5,7 @@ const Guide4Div = styled.div`
   font-size: 2.3rem;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   align-items: center;
   justify-content: center;
   text-align: center;
