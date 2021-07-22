@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import CircleOrang from '../../Assets/Logo/CircleOrang.svg';
+// 테스트 데이터에 쓰일 프로필
+import Test from '../../Assets/Image/Test.jpg';
+import Mimmi from '../../Assets/Image/Testmimmi.jpg';
 import { Link } from 'react-router-dom';
 import { MainBlack } from '../../Assets/Color/Color';
 const ChatDiv = styled.div`
@@ -40,31 +43,56 @@ const StyledLink = styled(Link)`
 const ChatProfileImg = styled.img`
   width: 50px;
   height: 50px;
+  border-radius: 50%;
 `;
 
+const testData = [
+  {
+    id: 1,
+    profileImg: CircleOrang,
+    userName: '오랑이',
+    chat: '누나.. 저 누나만 기다렸어요 ..',
+  },
+  {
+    id: 2,
+    profileImg: Test,
+    userName: '하유민',
+    chat: '리액트 뿌셔뿌셔 ~',
+  },
+  {
+    id: 3,
+    profileImg: Mimmi,
+    userName: '밈미',
+    chat: '공주 밥 줘.',
+  },
+];
+
 function List() {
-  return (
-    <>
-      <StyledLink to="/chat">
-        <ChatDiv>
-          <ChatProfileImg src={CircleOrang} alt="Orang" />
-          <div>
-            <p>오랑이</p>
-            <p>누나.. 저 누나만 기다렸어요..</p>
-          </div>
-        </ChatDiv>
-      </StyledLink>
-      <StyledLink to="/chat">
-        <ChatDiv>
-          <ChatProfileImg src={CircleOrang} alt="Orang" />
-          <div>
-            <p>오랑이</p>
-            <p>누나.. 저 누나만 기다렸어요..</p>
-          </div>
-        </ChatDiv>
-      </StyledLink>
-    </>
-  );
+  const [chatList, setchatList] = useState(testData);
+  if (!chatList) {
+    return (
+      <>
+        <p> 아직 채팅이 없네요.채팅을 시작해보세요. </p>
+      </>
+    );
+  } else {
+    console.log(chatList);
+    return (
+      <>
+        {chatList.map((chatlist) => (
+          <StyledLink to="/chat">
+            <ChatDiv>
+              <ChatProfileImg src={chatlist.profileImg} alt="Orang" />
+              <div>
+                <p>{chatlist.userName}</p>
+                <p>{chatlist.chat}</p>
+              </div>
+            </ChatDiv>
+          </StyledLink>
+        ))}
+      </>
+    );
+  }
 }
 
 export default List;
