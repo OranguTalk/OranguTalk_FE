@@ -16,7 +16,7 @@ function LogoPage() {
   const history = useHistory();
   // 1초 뒤 채팅 메인으로 넘어가는 함수 작성
   const timeout = () => {
-    setTimeout(function () {
+    setTimeout(() => {
       history.push('/chatmain');
     }, 2000);
   };

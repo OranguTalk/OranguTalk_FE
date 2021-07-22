@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Test from '../../Assets/Image/Test.jpg';
 import GreenCircle from '../../Assets/Image/GreenCircle.svg';
@@ -62,20 +62,30 @@ const TextDiv = styled.div`
   }
 `;
 
+// test Profile data
+const testData = {
+  name: 'qhqhd78',
+  url: 'https://github.com/qhahd78',
+  profileImg: Test,
+};
+
 function Profile() {
+  // 다크모드 setting
   const current = useRecoilValue(modeState);
   const bgColor = current.bgColor;
   const textColor = current.textColor;
-  const userName = 'qhahd78';
-  const profileLink = `https://github.com/${userName}`;
+  // Profile state setting
+  const [Profile, setProfile] = useState(testData);
+  // console.log(Profile.name);
+  // console.log(Profile.url);
   return (
     <ProfileDiv>
       <div>
-        <TestImg src={Test} alt="test_img" />
+        <TestImg src={Profile.profileImg} alt="test_img" />
       </div>
       <TextDiv bgColor={bgColor} textColor={textColor}>
-        <a href={profileLink}>
-          <p>{userName}</p>
+        <a href={Profile.url}>
+          <p>{Profile.name}</p>
         </a>
         <p>
           <img src={GreenCircle} alt="circle" />
