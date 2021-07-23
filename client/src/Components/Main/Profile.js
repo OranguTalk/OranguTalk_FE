@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Test from '../../Assets/Image/Test.jpg';
 import GreenCircle from '../../Assets/Image/GreenCircle.svg';
 import { useRecoilValue } from 'recoil';
 import { modeState } from '../../Recoil/ThemeMode';
 import ToggleBtn from '../Button/ToggleBtn';
+import { userState } from '../../Recoil/user';
 
 const ProfileDiv = styled.div`
   margin: 0 auto;
@@ -63,29 +63,28 @@ const TextDiv = styled.div`
 `;
 
 // test Profile data
-const testData = {
-  name: 'qhqhd78',
-  url: 'https://github.com/qhahd78',
-  profileImg: Test,
-};
+// const testData = {
+//   name: 'qhqhd78',
+//   url: 'https://github.com/qhahd78',
+//   profileImg: Test,
+// };
 
 function Profile() {
   // 다크모드 setting
   const current = useRecoilValue(modeState);
   const bgColor = current.bgColor;
   const textColor = current.textColor;
-  // Profile state setting
-  const [Profile, setProfile] = useState(testData);
-  // console.log(Profile.name);
-  // console.log(Profile.url);
+  // recoil 값 저장
+  const user = useRecoilValue(userState);
+  const user_url = `https://github.com/${user.username}`;
   return (
     <ProfileDiv>
       <div>
-        <TestImg src={Profile.profileImg} alt="test_img" />
+        <TestImg src={user.profile} alt="test_img" />
       </div>
       <TextDiv bgColor={bgColor} textColor={textColor}>
-        <a href={Profile.url}>
-          <p>{Profile.name}</p>
+        <a href={user_url}>
+          <p>{user.username}</p>
         </a>
         <p>
           <img src={GreenCircle} alt="circle" />
