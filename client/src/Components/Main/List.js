@@ -76,7 +76,6 @@ function List() {
       </>
     );
   } else {
-    console.log(chatList);
     return (
       <>
         {chatList.map((chatlist) => (
