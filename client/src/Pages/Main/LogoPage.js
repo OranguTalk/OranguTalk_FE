@@ -17,7 +17,7 @@ function LogoPage() {
   // 1초 뒤 채팅 메인으로 넘어가는 함수 작성
   const timeout = () => {
     setTimeout(() => {
-      history.push('/chatmain');
+      history.push('/login');
     }, 2000);
   };
   // 컴포넌트가 화면에 다 나타나면 timeout 함수 실행
