@@ -1,13 +1,13 @@
 import React from 'react';
 import Button from '../../Components/Login/Button';
-import LoadingLogo from '../../Assets/Logo/LoadingLogo.svg';
 import styled from 'styled-components';
+import Fade from 'react-reveal/Fade';
 
 const LoginDiv = styled.div`
-  font-size: 2.3rem;
+  font-size: 1.8rem;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -16,18 +16,29 @@ const LoginDiv = styled.div`
   & > div {
     display: flex;
     align-items: center;
-    height: 150px;
+    height: 100px;
+  }
+  & span {
+    display: inline-block;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
   }
 `;
 
 function Login() {
   return (
-    <LoginDiv>
-      <img src={LoadingLogo} alt="LoadingLogo" width="200" />
-      <div>
-        <Button>Github</Button>
-      </div>
-    </LoginDiv>
+    <Fade>
+      <LoginDiv>
+        <p>
+          <span>환영합니다! </span>
+          <br />
+          깃허브 계정으로 로그인해주세요.
+        </p>
+        <div>
+          <Button />
+        </div>
+      </LoginDiv>
+    </Fade>
   );
 }
 

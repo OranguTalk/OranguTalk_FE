@@ -5,7 +5,6 @@ import Guide1 from '../../Components/Guide/Guide1';
 import Guide2 from '../../Components/Guide/Guide2';
 import Guide3 from '../../Components/Guide/Guide3';
 import Guide4 from '../../Components/Guide/Guide4';
-import Login from '../Login/Login';
 
 const GuideDiv = styled.div`
   display: flex;
@@ -37,9 +36,6 @@ function Guide() {
         </GuideDiv>
         <GuideDiv>
           <Guide4 />
-        </GuideDiv>
-        <GuideDiv>
-          <Login />
         </GuideDiv>
       </Slider>
     </>
