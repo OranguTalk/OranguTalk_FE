@@ -5,7 +5,7 @@ import CircleOrang from '../../Assets/Logo/CircleOrang.svg';
 import Test from '../../Assets/Image/Test.jpg';
 import Mimmi from '../../Assets/Image/Testmimmi.jpg';
 import { Link } from 'react-router-dom';
-import { MainBlack } from '../../Assets/Color/Color';
+import { MainBlack, MainBrown } from '../../Assets/Color/Color';
 const ChatDiv = styled.div`
   margin: 0 auto;
   display: flex;
@@ -24,6 +24,11 @@ const ChatDiv = styled.div`
     font-size: 1.5rem;
     color: black;
   }
+  & > div > p:nth-child(2) {
+    font-family: 'Kakao-Regular';
+    font-size: 1.2rem;
+    color: black;
+  }
   & > div > p + p {
     margin-top: 8px;
   }
@@ -37,6 +42,7 @@ const StyledLink = styled(Link)`
   }
   &:link {
     text-decoration: none;
+    color: ${MainBlack};
   }
 `;
 
