@@ -46,6 +46,7 @@ const TextDiv = styled.div`
   }
   /* 깃허브 글씨 */
   & > p:nth-child(2) p {
+    /* font-size: 1.1rem; */
     margin-left: 6px;
   }
   & > a:visited {

@@ -9,6 +9,7 @@ import Fade from '@material-ui/core/Fade';
 
 import { useRecoilValue } from 'recoil';
 import { modeState } from '../../Recoil/ThemeMode';
+import { MainBlack } from '../../Assets/Color/Color';
 
 const ChatListDIv = styled.div`
   margin: 0 auto;
@@ -41,10 +42,12 @@ const ModalDiv = styled.div`
 
   & p:nth-child(1) {
     font-size: 2rem;
+    color: ${MainBlack};
     /* font-family: 'Kakao-Bold'; */
   }
   & p:nth-child(2) {
     font-size: 1.2rem;
+    color: ${MainBlack};
   }
   & > p + p {
     margin-top: 2vh;

@@ -12,12 +12,20 @@ const LogoPageDiv = styled.div`
 `;
 
 function LogoPage() {
+  // user 값 받아오기
+  const user = localStorage.username;
   // push 사용 위해 usehistory 불러오기
   const history = useHistory();
   // 1초 뒤 채팅 메인으로 넘어가는 함수 작성
   const timeout = () => {
+    // 유저 값 들어와있으면 chatmain 으로 이동
+    // 없으면 chatmain 으로 이동
     setTimeout(() => {
-      history.push('/login');
+      if (!user) {
+        history.push('/login');
+      } else {
+        history.push('/chatmain');
+      }
     }, 2000);
   };
   // 컴포넌트가 화면에 다 나타나면 timeout 함수 실행
