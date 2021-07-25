@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Socket } from 'socket.io-client';
 import styled from 'styled-components';
 import { MainYellow } from '../../Assets/Color/Color';
-import Sendicon from '../../Assets/Image/Sendicon.svg';
+import { ReactComponent as Sendicon_svg } from '../../Assets/Image/Sendicon.svg';
 
 const Container = styled.div`
   display: flex;
@@ -22,27 +23,32 @@ const InputBox = styled.input`
     outline: none;
   }
 `;
-const SendIcon = styled.button`
+const SendIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 30%;
   height: 100%;
-  background: url(${Sendicon}) no-repeat center;
-  background-color: ${MainYellow};
   border: 0;
   :active {
     transition: 0.3s;
-    box-shadow: 1px 2px 3px black;
+    background-color: ${MainYellow};
   }
 `;
 
-const Chatinput = () => {
+const Chatinput = ({ socket }) => {
   const [Chat, setChat] = useState('');
 
   const onChangeChatText = (e) => {
     setChat(e.target.value);
   };
 
+  // 입력값 보내기
   const handleSendmessage = (e) => {
-    setChat('');
+    if (e.key === 'Enter') {
+      // socket.emit('sendMessage', { Chat });
+      setChat({ ...Chat, content: '' });
+    }
   };
 
   return (
@@ -52,7 +58,9 @@ const Chatinput = () => {
         onChange={onChangeChatText}
         placeholder="대화를 입력해주세요.."
       />
-      <SendIcon onClick={handleSendmessage}></SendIcon>
+      <SendIcon onClick={handleSendmessage}>
+        <Sendicon_svg width={40} height={40} />
+      </SendIcon>
     </Container>
   );
 };
