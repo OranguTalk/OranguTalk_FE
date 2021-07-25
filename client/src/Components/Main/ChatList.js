@@ -13,8 +13,9 @@ import { MainBlack } from '../../Assets/Color/Color';
 
 import socketIOClient from 'socket.io-client';
 import { AllUsersInfo } from '../../Api/User';
-import { userState } from '../../Recoil/user';
+import { participantState, userState } from '../../Recoil/user';
 import UserList from './UserList';
+import { CreateRoomState } from '../../Recoil/CreateRoom';
 
 const ChatListDIv = styled.div`
   margin: 0 auto;
@@ -88,8 +89,11 @@ const useStyles = makeStyles((theme) => ({
 
 function ChatList() {
   const user = useRecoilValue(userState);
+  const participants = useRecoilValue(participantState);
+  const roomName = useRecoilValue(CreateRoomState);
   const token = user.userToken;
   const [Users, setUsers] = useState([]);
+
   // setUsers(Token);
   useEffect(() => {
     const fetchUsers = async () => {
@@ -110,14 +114,15 @@ function ChatList() {
     // 서버와 연결
     setCurrentSocket(socketIOClient('localhost:5000'));
   }, []);
-
   // 방 만드는 함수
   const CreateRoom = () => {
     currentSocket.emit('roomCreate', {
       accessToken: token,
-      roomname: '떠드는 방',
-      participant: ['하유민', '최세환', '밈미'],
+      roomname: roomName,
+      participant: participants,
     });
+    console.log(participants);
+    console.log(roomName);
   };
 
   // 다크모드 설정
@@ -160,7 +165,7 @@ function ChatList() {
           </ModalDiv>
         </Fade>
       </Modal>
-      <List socket={currentSocket} />
+      <List socket={currentSocket} token={token} />
     </ChatListDIv>
   );
 }

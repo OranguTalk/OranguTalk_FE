@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CircleOrang from '../../Assets/Logo/CircleOrang.svg';
 // 테스트 데이터에 쓰일 프로필
@@ -6,6 +6,9 @@ import Test from '../../Assets/Image/Test.jpg';
 import Mimmi from '../../Assets/Image/Testmimmi.jpg';
 import { Link } from 'react-router-dom';
 import { MainBlack } from '../../Assets/Color/Color';
+import { GetUserRooms } from '../../Api/User';
+import cookie from 'react-cookies';
+
 const ChatDiv = styled.div`
   margin: 0 auto;
   display: flex;
@@ -73,37 +76,51 @@ const testData = [
   },
 ];
 
-function List({ socket }) {
-  // console.log(socket);
+function List({ socket, token }) {
   const [chatList, setchatList] = useState(testData);
-  if (!chatList) {
-    return (
-      <>
-        <p> 아직 채팅이 없네요.채팅을 시작해보세요. </p>
-      </>
-    );
-  } else {
-    return (
-      <>
-        {chatList.map((chatlist) => (
-          <StyledLink
-            to={{
-              pathname: '/chat',
-              socket: socket,
-            }}
-          >
-            <ChatDiv>
-              <ChatProfileImg src={chatlist.profileImg} alt="Orang" />
-              <div>
-                <p>{chatlist.userName}</p>
-                <p>{chatlist.chat}</p>
-              </div>
-            </ChatDiv>
-          </StyledLink>
-        ))}
-      </>
-    );
-  }
+  const [Rooms, setRooms] = useState();
+  const newkey = cookie.load('accessToken');
+  useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const rooms = (await GetUserRooms(newkey)).data;
+        console.log(newkey);
+        setRooms(Rooms);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchRooms();
+  }, []);
+  // console.log(socket);
+  // if (!Rooms) {
+  //   return (
+  //     <>
+  //       <p> 아직 채팅이 없네요.채팅을 시작해보세요. </p>
+  //     </>
+  //   );
+  // } else {
+  return (
+    <>
+      {chatList.map((chatlist) => (
+        <StyledLink
+          to={{
+            pathname: '/chat',
+            socket: socket,
+          }}
+        >
+          <ChatDiv>
+            <ChatProfileImg src={chatlist.profileImg} alt="Orang" />
+            <div>
+              <p>{chatlist.userName}</p>
+              <p>{chatlist.chat}</p>
+            </div>
+          </ChatDiv>
+        </StyledLink>
+      ))}
+    </>
+  );
 }
+// }
 
 export default List;
