@@ -13,6 +13,7 @@ import { MainBlack } from '../../Assets/Color/Color';
 
 import CreateRoom from '../../Pages/Chat/Chat';
 import socketIOClient from 'socket.io-client';
+import { AllUsersInfo } from '../../Api/User';
 
 const ChatListDIv = styled.div`
   margin: 0 auto;
@@ -78,6 +79,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ChatList() {
+  const user = useRecoilValue(useState);
+  const token = user.userToken;
+  const [Token, setToken] = useState(token);
+  const [Users, setUsers] = useState([]);
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const users = (await AllUsersInfo()).data;
+        console.log(users);
+        setUsers(users);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUsers();
+  }, []);
+
   // 서버세팅
   const [currentSocket, setCurrentSocket] = useState();
   useEffect(() => {
@@ -89,6 +107,7 @@ function ChatList() {
   // 방 만드는 함수
   const CreateRoom = () => {
     currentSocket.emit('roomCreate', {
+      accessToken: Token,
       roomname: '떠드는 방',
       participant: ['하유민', '최세환', '밈미'],
     });
