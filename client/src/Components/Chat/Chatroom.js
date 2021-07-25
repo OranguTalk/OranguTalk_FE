@@ -4,6 +4,7 @@ import My from './Bubble/My';
 import Other from './Bubble/Other';
 import Statusbar from './Statusbar';
 import Test from '../../Assets/Image/Test.jpg';
+import orangu from '../../Assets/Image/orangu1.png';
 
 const Container = styled.div`
   height: 80vh;
@@ -35,7 +36,7 @@ const Chatroom = () => {
         }
         time={'07:23'}
       />
-      <Other username={'오랑이'} chat={'새침때기ㅋ'} time={'07:23'} />
+      <Other username={'오랑이'} chat={orangu} time={'07:23'} />
       <My chat={'ㄲㅈ'} time={'07:23'} />
       <My
         chat={
