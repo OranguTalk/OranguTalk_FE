@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import List from './List';
 
@@ -10,6 +10,9 @@ import Fade from '@material-ui/core/Fade';
 import { useRecoilValue } from 'recoil';
 import { modeState } from '../../Recoil/ThemeMode';
 import { MainBlack } from '../../Assets/Color/Color';
+
+import CreateRoom from '../../Pages/Chat/Chat';
+import socketIOClient from 'socket.io-client';
 
 const ChatListDIv = styled.div`
   margin: 0 auto;
@@ -75,6 +78,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ChatList() {
+  // 서버세팅
+  const [currentSocket, setCurrentSocket] = useState();
+  useEffect(() => {
+    // 서버와 연결
+    setCurrentSocket(socketIOClient('localhost:5000'));
+    console.log({ currentSocket });
+  }, []);
+
+  // 방 만드는 함수
+  const CreateRoom = () => {
+    currentSocket.emit('roomCreate', {
+      roomname: '떠드는 방',
+      participant: ['하유민', '최세환', '밈미'],
+    });
+  };
   const current = useRecoilValue(modeState);
   const bgColor2 = current.bgColor2;
 
@@ -109,10 +127,11 @@ function ChatList() {
           <ModalDiv className={classes.paper}>
             <p>채팅방 생성</p>
             <p>채팅방을 생성해보세요.</p>
+            <button onClick={CreateRoom}>채팅방 생성</button>
           </ModalDiv>
         </Fade>
       </Modal>
-      <List />
+      <List socket={currentSocket} />
     </ChatListDIv>
   );
 }

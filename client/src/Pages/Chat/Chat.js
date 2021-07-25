@@ -9,21 +9,9 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Chat = () => {
-  // 소켓 설정
-  const [currentSocket, setCurrentSocket] = useState();
-  useEffect(() => {
-    // 서버와 연결
-    setCurrentSocket(socketIOClient('localhost:5000'));
-    console.log({ currentSocket });
-  }, []);
-
-  if (currentSocket) {
-    currentSocket.emit('roomCreate', {
-      roomname: '떠드는 방',
-      participant: ['하유민', '최세환', '밈미'],
-    });
-  }
+const Chat = ({ match }) => {
+  const [Socket, setSocket] = useState(match.params.socket);
+  console.log(Socket);
 
   return (
     <Container>
