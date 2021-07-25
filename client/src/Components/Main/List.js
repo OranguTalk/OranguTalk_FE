@@ -74,6 +74,7 @@ const testData = [
 ];
 
 function List({ socket }) {
+  // console.log(socket);
   const [chatList, setchatList] = useState(testData);
   if (!chatList) {
     return (
@@ -85,7 +86,12 @@ function List({ socket }) {
     return (
       <>
         {chatList.map((chatlist) => (
-          <StyledLink to={`/chat/${socket}`}>
+          <StyledLink
+            to={{
+              pathname: '/chat',
+              socket: socket,
+            }}
+          >
             <ChatDiv>
               <ChatProfileImg src={chatlist.profileImg} alt="Orang" />
               <div>
