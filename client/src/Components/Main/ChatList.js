@@ -14,6 +14,7 @@ import { MainBlack } from '../../Assets/Color/Color';
 import CreateRoom from '../../Pages/Chat/Chat';
 import socketIOClient from 'socket.io-client';
 import { AllUsersInfo } from '../../Api/User';
+import { userState } from '../../Recoil/user';
 
 const ChatListDIv = styled.div`
   margin: 0 auto;
@@ -79,10 +80,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ChatList() {
-  const user = useRecoilValue(useState);
+  const user = useRecoilValue(userState);
   const token = user.userToken;
-  const [Token, setToken] = useState(token);
   const [Users, setUsers] = useState([]);
+  // setUsers(Token);
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -103,11 +104,10 @@ function ChatList() {
     setCurrentSocket(socketIOClient('localhost:5000'));
     console.log({ currentSocket });
   }, []);
-
   // 방 만드는 함수
   const CreateRoom = () => {
     currentSocket.emit('roomCreate', {
-      accessToken: Token,
+      accessToken: token,
       roomname: '떠드는 방',
       participant: ['하유민', '최세환', '밈미'],
     });

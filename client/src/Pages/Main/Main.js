@@ -27,7 +27,7 @@ function Main() {
     setUser({
       username: user_name,
       profile: user_profile,
-      accessToken: user_accessToken,
+      userToken: user_accessToken,
     });
   };
   useEffect(() => {
