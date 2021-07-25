@@ -5,7 +5,7 @@ import CircleOrang from '../../Assets/Logo/CircleOrang.svg';
 import Test from '../../Assets/Image/Test.jpg';
 import Mimmi from '../../Assets/Image/Testmimmi.jpg';
 import { Link } from 'react-router-dom';
-import { MainBlack, MainBrown } from '../../Assets/Color/Color';
+import { MainBlack } from '../../Assets/Color/Color';
 const ChatDiv = styled.div`
   margin: 0 auto;
   display: flex;
