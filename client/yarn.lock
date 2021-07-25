@@ -7103,6 +7103,11 @@
   "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.6.0.tgz"
   "version" "3.6.0"
 
+"js-confetti@^0.9.0":
+  "integrity" "sha512-hxcUYGzcuiDlEWgnfPh7aFenXmVgslQF4ddzbPTj+5U1SNCkoUgPlWjUCS5vu2/Pdx3ZKiohk6OiPBPyw5ilRg=="
+  "resolved" "https://registry.npmjs.org/js-confetti/-/js-confetti-0.9.0.tgz"
+  "version" "0.9.0"
+
 "js-tokens@^3.0.0 || ^4.0.0", "js-tokens@^4.0.0":
   "integrity" "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
   "resolved" "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"

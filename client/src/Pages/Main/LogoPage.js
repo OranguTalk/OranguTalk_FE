@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import LoadingLogo from '../../Assets/Logo/LoadingLogo.svg';
 import { useHistory } from 'react-router';
@@ -13,7 +13,7 @@ const LogoPageDiv = styled.div`
 
 function LogoPage() {
   // user 값 받아오기
-  const user = localStorage.username;
+  const [user, setUser] = useState(localStorage.username);
   // push 사용 위해 usehistory 불러오기
   const history = useHistory();
   // 1초 뒤 채팅 메인으로 넘어가는 함수 작성
@@ -21,7 +21,7 @@ function LogoPage() {
     // 유저 값 들어와있으면 chatmain 으로 이동
     // 없으면 chatmain 으로 이동
     setTimeout(() => {
-      if (!user) {
+      if (user) {
         history.push('/login');
       } else {
         history.push('/chatmain');

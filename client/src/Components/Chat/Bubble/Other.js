@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Orang from '../../../Assets/Logo/CircleOrang.svg';
 import { useRecoilValue } from 'recoil';
 import { modeState } from '../../../Recoil/ThemeMode';
+import JSConfetti from 'js-confetti';
 
 const Container = styled.div`
   display: flex;
@@ -61,9 +62,19 @@ const Other = ({ avatar, username, chat, time }) => {
 
   // 이미지 확장자 확인하기
   const IsImageType = () => {
+    const jsConfetti = new JSConfetti();
     const result =
       chat.includes('jpg') || chat.includes('jpeg') || chat.includes('png');
     SetisImage(result);
+
+    if (result && chat.includes('orangu')) {
+      jsConfetti.addConfetti({
+        emojis: ['🙉'],
+        emojiSize: 100,
+        confettiRadius: 6,
+        confettiNumber: 50,
+      });
+    }
   };
   const current = useRecoilValue(modeState);
   const textColor2 = current.textColor2;
