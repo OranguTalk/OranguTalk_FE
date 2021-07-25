@@ -22,7 +22,13 @@ function Main() {
   const save = () => {
     const user_name = (localStorage.username = cookie.load('username'));
     const user_profile = (localStorage.profile = cookie.load('profile'));
-    setUser({ username: user_name, profile: user_profile });
+    const user_accessToken = (localStorage.profile =
+      cookie.load('accessToken'));
+    setUser({
+      username: user_name,
+      profile: user_profile,
+      accessToken: user_accessToken,
+    });
   };
   useEffect(() => {
     save();
