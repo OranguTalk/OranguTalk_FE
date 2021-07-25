@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ChatList from '../../Components/Main/ChatList';
 import Profile from '../../Components/Main/Profile';
 import Fade from 'react-reveal/Fade';
 import styled from 'styled-components';
-import cookie, { save } from 'react-cookies';
+import cookie from 'react-cookies';
 import { useRecoilState } from 'recoil';
 import { userState } from '../../Recoil/user';
+import socketIOClient from 'socket.io-client';
 
 const MainDiv = styled.div`
   display: flex;
