@@ -8,3 +8,8 @@ export const userState = atom({
     userToken: '',
   },
 });
+
+export const participantState = atom({
+  key: 'participantState',
+  default: [],
+});
