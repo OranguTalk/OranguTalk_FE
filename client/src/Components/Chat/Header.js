@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as ArrowLeft } from '../../Assets/Image/arrow-left.svg';
 import { useHistory } from 'react-router-dom';
@@ -12,6 +12,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Test from '../../Assets/Image/Test.jpg';
 
 import { MainBlack, MainYellow } from '../../Assets/Color/Color';
+import { GetUserListInRoom } from '../../Api/User';
 
 const Container = styled.div`
   width: 100%;
@@ -98,7 +99,7 @@ const ModalItemimg = styled.img`
   border-radius: 10px;
 `;
 
-const Header = ({ roomname }) => {
+const Header = ({ roomname, room_id }) => {
   const [open, setOpen] = useState(false);
 
   const current = useRecoilValue(modeState);
@@ -135,6 +136,17 @@ const Header = ({ roomname }) => {
       userName: '밈미',
     },
   ];
+
+  useEffect(() => {
+    const GetUserInList = async () => {
+      try {
+        const response = await GetUserListInRoom(1);
+        console.log(response);
+      } catch (err) {
+        alert(err);
+      }
+    };
+  }, []);
 
   return (
     <Container bgColor={bgColor}>

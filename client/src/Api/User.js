@@ -13,3 +13,9 @@ export const GetUserRooms = (newkey) => {
   });
   return getUserRooms;
 };
+
+// Room 참여자 리스트 API
+export const GetUserListInRoom = (room_id) => {
+  const response = axios.get(`/room/getUserListInRoom?room=${room_id}`);
+  return response;
+};
