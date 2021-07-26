@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { AllUsersInfo } from '../../Api/User';
-import { MainYellow } from '../../Assets/Color/Color';
+import { MainBlack, MainYellow } from '../../Assets/Color/Color';
 import { CreateRoomState } from '../../Recoil/CreateRoom';
 import { participantState } from '../../Recoil/user';
 
@@ -46,7 +46,7 @@ function UserList({ users }) {
   const [Participants, setParticipants] = useState([]);
   const parcitipantAdd = (participant) => {
     // 버튼 효과
-    if (Text === '추가') {
+    if (RecoilParticipant.includes(participant.user_id)) {
       // 추가하는 경우
       // set 으로 중목제거
       const set = new Set(Participants.concat(participant.user_id));
@@ -56,12 +56,9 @@ function UserList({ users }) {
       // recoil 에 저장
       setRecoilParticipant(Participants);
       console.log(Participants);
-      setColor('#FF6C6C');
-      setText('');
-    } else {
-      // 삭제하는 경우
-      setColor();
-      setText('추가');
+      setColor('');
+      document.getElementById(participant.user_id).innerText = '선택완료';
+      document.getElementById(participant.user_id).style.color = '#FF6C6C';
     }
   };
 
@@ -76,7 +73,9 @@ function UserList({ users }) {
           <UserBox color={Color}>
             <ProfileImg src={user.profileImage} alt="profileImage" />
             <p key={user}>{user.user_name}</p>
-            <p onClick={() => parcitipantAdd(user)}>{Text}</p>
+            <p id={user.user_id} onClick={() => parcitipantAdd(user)}>
+              추가
+            </p>
           </UserBox>
         ))}
         <p>
