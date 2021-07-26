@@ -121,6 +121,7 @@ function ChatList() {
       roomname: roomName,
       participant: participants,
     });
+    console.log(token);
     console.log(participants);
     console.log(roomName);
   };
