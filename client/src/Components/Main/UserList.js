@@ -50,7 +50,7 @@ function UserList({ users }) {
       // set 으로 중목제거
 
       // ****** api에 userid 값 들어오면 여기 바꿔주기 ******
-      const set = new Set(Participants.concat(participant.user_name));
+      const set = new Set(Participants.concat(participant.user_id));
       // 중복제거 후 배열 형태로 다시 저장
       const newList = Array.from(set);
       setParticipants(newList);
