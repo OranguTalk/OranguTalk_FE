@@ -13,7 +13,7 @@ const Routes = () => {
         <Route path="/" exact component={LogoPage} />
         {/* 그 외 라우터는 이 밑으로 연결 */}
         <Route path="/chatmain" exact component={Main} />
-        <Route path="/chat:id" exact component={Chat} />
+        <Route path="/chat/:id" exact component={Chat} />
         <Route path="/guide" component={Guide} />
         <Route path="/login" component={Login} />
       </Switch>
