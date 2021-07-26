@@ -70,7 +70,7 @@ function List({ socket, token }) {
       try {
         const rooms = (await GetUserRooms(newkey)).data.data;
         setRooms(rooms);
-        // console.log(rooms);
+        console.log(rooms);
         console.log(Rooms);
       } catch (error) {
         console.log(error);
@@ -90,7 +90,7 @@ function List({ socket, token }) {
         {Rooms.map((chatlist) => (
           <StyledLink
             to={{
-              pathname: '/chat',
+              pathname: `/chat/${chatlist.id}`,
               socket: socket,
             }}
           >
