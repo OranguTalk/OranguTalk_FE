@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     width: 200,
-    height: 200,
+    height: 300,
     backgroundColor: theme.palette.background.paper,
     borderRadius: 8,
     boxShadow: theme.shadows[5],
@@ -99,7 +99,7 @@ function ChatList() {
     const fetchUsers = async () => {
       try {
         const users = (await AllUsersInfo()).data;
-        // console.log(users);
+        console.log(users);
         setUsers(users);
       } catch (error) {
         console.log(error);

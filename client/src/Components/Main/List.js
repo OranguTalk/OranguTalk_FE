@@ -5,7 +5,7 @@ import CircleOrang from '../../Assets/Logo/CircleOrang.svg';
 import Test from '../../Assets/Image/Test.jpg';
 import Mimmi from '../../Assets/Image/Testmimmi.jpg';
 import { Link } from 'react-router-dom';
-import { MainBlack } from '../../Assets/Color/Color';
+import { MainBlack, MainBrown } from '../../Assets/Color/Color';
 import { GetUserRooms } from '../../Api/User';
 import cookie from 'react-cookies';
 
@@ -16,6 +16,7 @@ const ChatDiv = styled.div`
   justify-content: space-around;
   width: 300px;
   height: 70px;
+  overflow-x: scroll;
 
   & > div {
     width: 220px;
@@ -55,72 +56,58 @@ const ChatProfileImg = styled.img`
   border-radius: 50%;
 `;
 
-const testData = [
-  {
-    id: 1,
-    profileImg: CircleOrang,
-    userName: '오랑이',
-    chat: '누나.. 저 누나만 기다렸어요 ..',
-  },
-  {
-    id: 2,
-    profileImg: Test,
-    userName: '하유민',
-    chat: '리액트 뿌셔뿌셔 ~',
-  },
-  {
-    id: 3,
-    profileImg: Mimmi,
-    userName: '밈미',
-    chat: '공주 밥 줘.',
-  },
-];
+const Count = styled.span`
+  font-family: 'Kakao-Regular';
+  font-size: 0.8rem;
+  color: ${MainBrown};
+`;
 
 function List({ socket, token }) {
-  const [chatList, setchatList] = useState(testData);
-  const [Rooms, setRooms] = useState();
+  const [Rooms, setRooms] = useState([]);
   const newkey = cookie.load('accessToken');
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const rooms = (await GetUserRooms(newkey)).data;
-        console.log(newkey);
-        setRooms(Rooms);
+        const rooms = (await GetUserRooms(newkey)).data.data;
+        setRooms(rooms);
+        // console.log(rooms);
+        console.log(Rooms);
       } catch (error) {
         console.log(error);
       }
     };
     fetchRooms();
   }, []);
-  // console.log(socket);
-  // if (!Rooms) {
-  //   return (
-  //     <>
-  //       <p> 아직 채팅이 없네요.채팅을 시작해보세요. </p>
-  //     </>
-  //   );
-  // } else {
-  return (
-    <>
-      {chatList.map((chatlist) => (
-        <StyledLink
-          to={{
-            pathname: '/chat',
-            socket: socket,
-          }}
-        >
-          <ChatDiv>
-            <ChatProfileImg src={chatlist.profileImg} alt="Orang" />
-            <div>
-              <p>{chatlist.userName}</p>
-              <p>{chatlist.chat}</p>
-            </div>
-          </ChatDiv>
-        </StyledLink>
-      ))}
-    </>
-  );
+  if (!Rooms) {
+    return (
+      <>
+        <p> 아직 채팅이 없네요.채팅을 시작해보세요. </p>
+      </>
+    );
+  } else {
+    return (
+      <>
+        {Rooms.map((chatlist) => (
+          <StyledLink
+            to={{
+              pathname: '/chat',
+              socket: socket,
+            }}
+          >
+            <ChatDiv>
+              <ChatProfileImg src={chatlist.profileImage} alt="Orang" />
+              <div>
+                <p>
+                  {chatlist.room_name}
+                  <Count>{chatlist.participant}명</Count>
+                </p>
+              </div>
+            </ChatDiv>
+          </StyledLink>
+        ))}
+      </>
+    );
+  }
 }
-// }
 
 export default List;
