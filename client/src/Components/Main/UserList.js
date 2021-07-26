@@ -16,6 +16,7 @@ const UserBox = styled.p`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin-bottom: 8px;
   & p:nth-last-child(1) {
     font-family: 'Kakao-Bold';
     color: black;
@@ -29,7 +30,7 @@ const UserBox = styled.p`
 
 const UserDiv = styled.div`
   width: 200px;
-  height: 150px;
+  height: 200px;
   /* background-color: blue; */
   overflow-y: scroll;
   margin: 15px 0;

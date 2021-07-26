@@ -7,8 +7,9 @@ export const AllUsersInfo = () => {
 
 export const GetUserRooms = (newkey) => {
   const getUserRooms = axios.get('/rooms/getRooms', {
-    Authorization: `Bearer ${newkey}`,
+    headers: {
+      Authorization: `Bearer ${newkey}`,
+    },
   });
-  console.log(getUserRooms);
-  console.log(`Bearer ${newkey}`);
+  return getUserRooms;
 };
