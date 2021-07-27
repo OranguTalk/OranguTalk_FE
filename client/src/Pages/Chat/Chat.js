@@ -13,14 +13,18 @@ const Container = styled.div`
 const Chat = ({ match }) => {
   const location = useLocation();
   console.log(location.socket);
-  const [ChatListInfo, setChatListInfo] = useState([]);
+  const [ChatListInfo, setChatListInfo] = useState({});
   const room_id = match.params.id;
   // 채팅방 정보, 내역 조회 api 실행
   useEffect(() => {
     const fetchChatList = async () => {
       try {
         const chatList = (await ChatList(room_id)).data;
-        setChatListInfo(chatList);
+        console.log(chatList);
+        setTimeout(() => {
+          setChatListInfo(chatList);
+        }, 1000);
+        console.log(ChatListInfo);
       } catch (error) {
         console.log(error);
       }
