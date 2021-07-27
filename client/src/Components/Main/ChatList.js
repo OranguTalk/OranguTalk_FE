@@ -94,7 +94,6 @@ function ChatList() {
   const token = user.userToken;
   const [Users, setUsers] = useState([]);
 
-  // setUsers(Token);
   useEffect(() => {
     const fetchUsers = async () => {
       try {

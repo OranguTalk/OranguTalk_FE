@@ -21,7 +21,7 @@ const UserBox = styled.p`
     font-family: 'Kakao-Bold';
     color: black;
     /* border: 2px solid ${MainYellow}; */
-    background-color: ${(props) => props.color};
+    /* background-color: ${MainBlack}; */
     padding: 8px;
     border-radius: 12px;
     font-size: 1.3rem;
@@ -41,12 +41,10 @@ function UserList({ users }) {
     useRecoilState(participantState);
   const [RecoilCreateRoom, setRecoilCreateRoom] =
     useRecoilState(CreateRoomState);
-  const [Color, setColor] = useState();
-  const [Text, setText] = useState('추가');
   const [Participants, setParticipants] = useState([]);
   const parcitipantAdd = (participant) => {
     // 버튼 효과
-    if (RecoilParticipant.includes(participant.user_id)) {
+    if (!RecoilParticipant.includes(participant.user_id)) {
       // 추가하는 경우
       // set 으로 중목제거
       const set = new Set(Participants.concat(participant.user_id));
@@ -56,7 +54,6 @@ function UserList({ users }) {
       // recoil 에 저장
       setRecoilParticipant(Participants);
       console.log(Participants);
-      setColor('');
       document.getElementById(participant.user_id).innerText = '선택완료';
       document.getElementById(participant.user_id).style.color = '#FF6C6C';
     }
@@ -65,12 +62,21 @@ function UserList({ users }) {
   const onChange = (e) => {
     setRecoilCreateRoom(e.target.value);
   };
+
+  const renderParticipants = () =>
+    Participants.length > 0 &&
+    Participants.map((participant) => <span>{participant}</span>);
+
+  useEffect(() => {
+    renderParticipants();
+  }, [Participants]);
+
   return (
     <>
       <UserDiv>
         <input placeholder="여기에 채팅방 제목" onChange={onChange} />
         {users.allUserInfo.map((user) => (
-          <UserBox color={Color}>
+          <UserBox>
             <ProfileImg src={user.profileImage} alt="profileImage" />
             <p key={user}>{user.user_name}</p>
             <p id={user.user_id} onClick={() => parcitipantAdd(user)}>
@@ -80,9 +86,7 @@ function UserList({ users }) {
         ))}
         <p>
           추가된 참가자 목록:
-          {Participants.map((participant) => (
-            <span>{participant}</span>
-          ))}
+          {renderParticipants()}
         </p>
       </UserDiv>
     </>
