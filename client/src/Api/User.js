@@ -25,6 +25,5 @@ export const GetUserListInRoom = (room_id) => {
 // 채팅방 정보, 내역 조회 API
 export const ChatList = (room_id) => {
   const chatList = axios.get(`/room/chatList?room_id=${room_id}`);
-  // console.log(chatList);
   return chatList;
 };

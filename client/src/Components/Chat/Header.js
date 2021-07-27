@@ -102,7 +102,6 @@ const ModalItemimg = styled.img`
 const Header = ({ room_id, room_info }) => {
   const [open, setOpen] = useState(false);
   const [roomUserList, setroomUserList] = useState([]);
-  // const [RoomName, setRoomName] = useState('');
   const current = useRecoilValue(modeState);
   const bgColor = current.bgColor;
   const textColor = current.textColor;
@@ -143,7 +142,7 @@ const Header = ({ room_id, room_info }) => {
       <ContentContainer>
         <ArrowLeft onClick={back} fill={textColor} width={25} height={25} />
         <Text onClick={handleOpenParticipantList} textColor={textColor}>
-          {room_info.roomInfo.room_name}
+          {/* {room_info.roomInfo.room_name} */}
         </Text>
         <ToggleBtn />
       </ContentContainer>
