@@ -16,6 +16,15 @@ export const GetUserRooms = (newkey) => {
 
 // Room 참여자 리스트 API
 export const GetUserListInRoom = (room_id) => {
-  const response = axios.get(`/room/getUserListInRoom?room=${room_id}`);
-  return response;
+  const userListInRoom = axios.get(
+    `/room/getUserListInRoom?room_id=${room_id}`,
+  );
+  return userListInRoom;
+};
+
+// 채팅방 정보, 내역 조회 API
+export const ChatList = (room_id) => {
+  const chatList = axios.get(`/room/chatList?room_id=${room_id}`);
+  // console.log(chatList);
+  return chatList;
 };

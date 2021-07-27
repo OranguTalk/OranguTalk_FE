@@ -99,9 +99,10 @@ const ModalItemimg = styled.img`
   border-radius: 10px;
 `;
 
-const Header = ({ roomname, room_id }) => {
+const Header = ({ room_id, room_info }) => {
   const [open, setOpen] = useState(false);
-
+  const [roomUserList, setroomUserList] = useState([]);
+  // const [RoomName, setRoomName] = useState('');
   const current = useRecoilValue(modeState);
   const bgColor = current.bgColor;
   const textColor = current.textColor;
@@ -122,30 +123,19 @@ const Header = ({ roomname, room_id }) => {
     setOpen(false);
   };
 
-  const testData = [
-    {
-      ProfileImg: Test,
-      userName: '오랑이',
-    },
-    {
-      ProfileImg: Test,
-      userName: '하유민',
-    },
-    {
-      ProfileImg: Test,
-      userName: '밈미',
-    },
-  ];
-
+  // 채팅방 인원 리스트 api 실행
   useEffect(() => {
-    const GetUserInList = async () => {
+    const fetchChat = async () => {
       try {
-        const response = await GetUserListInRoom(1);
-        console.log(response);
-      } catch (err) {
-        alert(err);
+        const chat = (await GetUserListInRoom(room_id)).data;
+        setroomUserList(chat);
+        console.log(room_info);
+        // setRoomName(room_info.roomInfo.room_name);
+      } catch (error) {
+        console.log(error);
       }
     };
+    fetchChat();
   }, []);
 
   return (
@@ -153,7 +143,7 @@ const Header = ({ roomname, room_id }) => {
       <ContentContainer>
         <ArrowLeft onClick={back} fill={textColor} width={25} height={25} />
         <Text onClick={handleOpenParticipantList} textColor={textColor}>
-          {roomname}
+          {room_info.roomInfo.room_name}
         </Text>
         <ToggleBtn />
       </ContentContainer>
@@ -173,10 +163,10 @@ const Header = ({ roomname, room_id }) => {
             <ModalHeader>채팅방 인원 리스트</ModalHeader>
             <ModalBody>
               {/* 유저 리스트 */}
-              {testData.map((chatlist) => (
+              {roomUserList.map((userlist) => (
                 <ModalItem>
-                  <ModalItemimg src={chatlist.ProfileImg} />
-                  <span>{chatlist.userName}</span>
+                  <ModalItemimg src={userlist.profileImage} />
+                  <span>{userlist.user_name}</span>
                 </ModalItem>
               ))}
             </ModalBody>
