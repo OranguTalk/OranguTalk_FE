@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Header from '../../Components/Chat/Header';
 import styled from 'styled-components';
 import Chatroom from '../../Components/Chat/Chatroom';
 import Chatinput from '../../Components/Chat/Chatinput';
 import { useLocation } from 'react-router-dom';
-import { ChatList, GetUserListInRoom } from '../../Api/User';
 
 const Container = styled.div`
   width: 100%;

@@ -12,7 +12,7 @@ import { modeState } from '../../Recoil/ThemeMode';
 import { MainBlack } from '../../Assets/Color/Color';
 
 import socketIOClient from 'socket.io-client';
-import { AllUsersInfo, GetUserRooms } from '../../Api/User';
+import { AllUsersInfo } from '../../Api/User';
 import { participantState, userState } from '../../Recoil/user';
 import UserList from './UserList';
 import { CreateRoomState, RoomNumState } from '../../Recoil/CreateRoom';
@@ -97,12 +97,15 @@ function ChatList() {
   // 채팅방 개수
   const roomNum = useRecoilValue(RoomNumState);
   const token = user.userToken;
+  const user_id = user.userId;
   const [Users, setUsers] = useState([]);
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const users = (await AllUsersInfo()).data;
-        console.log(users);
+        // const filterUsers = users.allUserInfo.filter(
+        //   (user) => user.user_id !== Number(user_id),
+        // );
         setUsers(users);
       } catch (error) {
         console.log(error);
@@ -118,20 +121,25 @@ function ChatList() {
   }, []);
   // 방 만드는 함수
   const CreateRoom = () => {
-    currentSocket.emit('roomCreate', {
-      accessToken: token,
-      roomname: roomName,
-      participant: Participants,
-    });
+    // 방 제목 없을 시 생성 안 되도록
+    if (!roomName) {
+      window.alert('방 제목을 정해주세요.');
+    } else {
+      currentSocket.emit('roomCreate', {
+        accessToken: token,
+        roomname: roomName,
+        participant: Participants,
+      });
+      setParticipants([]);
+      window.location.replace('/chatmain');
+    }
     // 생성 후 recoil 초기화 하고 main 으로.
-    setParticipants([]);
-    console.log(Participants);
-    window.location.replace('/chatmain');
   };
 
   // 다크모드 설정
   const current = useRecoilValue(modeState);
   const bgColor2 = current.bgColor2;
+  const textColor2 = current.textColor2;
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -173,7 +181,7 @@ function ChatList() {
           </ModalDiv>
         </Fade>
       </Modal>
-      <List socket={currentSocket} token={token} />
+      <List socket={currentSocket} token={token} textColor2={textColor2} />
     </ChatListDIv>
   );
 }

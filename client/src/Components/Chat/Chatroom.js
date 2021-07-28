@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import My from './Bubble/My';
 import Other from './Bubble/Other';
-import Statusbar from './Statusbar';
-import Test from '../../Assets/Image/Test.jpg';
-import orangu from '../../Assets/Image/orangu1.png';
 import { ChatList } from '../../Api/User';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../../Recoil/user';
@@ -36,7 +33,7 @@ const Chatroom = ({ room_id }) => {
     Chats.length > 0 &&
     Chats.map(
       (info) =>
-        (info.chatInfo.user_id == user.userId && (
+        (info.chatInfo.user_id === user.userId && (
           <My
             chat={info.chatInfo.message}
             time={

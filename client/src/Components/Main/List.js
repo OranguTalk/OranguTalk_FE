@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import CircleOrang from '../../Assets/Logo/CircleOrang.svg';
-// 테스트 데이터에 쓰일 프로필
-import Test from '../../Assets/Image/Test.jpg';
-import Mimmi from '../../Assets/Image/Testmimmi.jpg';
 import { Link } from 'react-router-dom';
 import { MainBlack, MainBrown } from '../../Assets/Color/Color';
 import { GetUserRooms } from '../../Api/User';
@@ -60,7 +56,7 @@ const ChatProfileImg = styled.img`
 
 const Count = styled.span`
   font-family: 'Kakao-Regular';
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: ${MainBrown};
   margin-left: 8px;
 `;
@@ -72,9 +68,10 @@ const NoneInfo = styled.div`
   height: 50vh;
   font-family: 'Kakao-Regular';
   font-size: 1.4rem;
+  color: ${(props) => props.textColor2};
 `;
 
-function List({ socket, token }) {
+function List({ socket, textColor2 }) {
   const [Rooms, setRooms] = useState([]);
   const [Num, setNum] = useRecoilState(RoomNumState);
   const newkey = cookie.load('accessToken');
@@ -96,7 +93,9 @@ function List({ socket, token }) {
     // if (!Rooms) {
     return (
       <>
-        <NoneInfo> 아직 채팅이 없네요. 채팅을 시작해보세요. </NoneInfo>
+        <NoneInfo textColor2={textColor2}>
+          아직 채팅이 없네요. 채팅을 시작해보세요.
+        </NoneInfo>
       </>
     );
   } else {

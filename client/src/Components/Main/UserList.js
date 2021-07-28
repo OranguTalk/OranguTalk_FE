@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { AllUsersInfo } from '../../Api/User';
-import { MainBlack, MainBrown, MainYellow } from '../../Assets/Color/Color';
+import { MainBrown } from '../../Assets/Color/Color';
 import { CreateRoomState } from '../../Recoil/CreateRoom';
 import { participantState, userState } from '../../Recoil/user';
 
@@ -53,11 +52,12 @@ function UserList({ users }) {
     useRecoilState(CreateRoomState);
   const user_id = useRecoilValue(userState).userId;
   const [Participants, setParticipants] = useState([Number(user_id)]);
+  // filtering users 값 설정
+  const [FilterUsers, setFilterUsers] = useState([]);
 
   // 참가자 추가하는 함수
   const parcitipantAdd = (participant) => {
     console.log(user_id);
-    console.log(Participants);
     // 버튼 효과
     if (!RecoilParticipant.includes(participant.user_id)) {
       // 추가하는 경우
@@ -67,8 +67,7 @@ function UserList({ users }) {
       const newList = Array.from(set);
       setParticipants(newList);
       // recoil 에 저장
-      setRecoilParticipant(Participants);
-      console.log(Participants);
+      setRecoilParticipant(newList);
       document.getElementById(participant.user_id).innerText = '선택완료';
       document.getElementById(participant.user_id).style.color = '#FF6C6C';
     }
@@ -84,6 +83,12 @@ function UserList({ users }) {
 
   useEffect(() => {
     renderParticipants();
+    // 로그인된 본인을 제외한 나머지 user를 반환
+    const test = users.allUserInfo.filter(
+      (user) => user.user_id !== Number(user_id),
+    );
+    setFilterUsers(test);
+    // console.log(FilterUsers);
   }, [Participants]);
 
   return (
@@ -93,7 +98,7 @@ function UserList({ users }) {
         onChange={onChange}
       />
       <UserDiv>
-        {users.allUserInfo.map((user) => (
+        {FilterUsers.map((user) => (
           <UserBox>
             <ProfileImg src={user.profileImage} alt="profileImage" />
             <p key={user}>{user.user_name}</p>
@@ -102,10 +107,6 @@ function UserList({ users }) {
             </p>
           </UserBox>
         ))}
-        {/* <p>
-          추가된 참가자 목록:
-          {renderParticipants()}
-        </p> */}
       </UserDiv>
     </>
   );
