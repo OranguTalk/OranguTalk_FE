@@ -9,7 +9,6 @@ import { modeState } from '../../Recoil/ThemeMode';
 import { makeStyles } from '@material-ui/core/styles';
 import { Fade, Modal } from '@material-ui/core';
 import Backdrop from '@material-ui/core/Backdrop';
-import Test from '../../Assets/Image/Test.jpg';
 
 import { MainBlack, MainYellow } from '../../Assets/Color/Color';
 import { ChatList, GetUserListInRoom } from '../../Api/User';
@@ -152,7 +151,6 @@ const Header = ({ room_id, socket }) => {
     };
     const fetchChatList = async () => {
       try {
-        //const chatList = (await ChatList(room_id)).data;
         const chatList = (await ChatList(room_id)).data.roomInfo;
         console.log(chatList);
         setroominfo(chatList);
@@ -166,12 +164,14 @@ const Header = ({ room_id, socket }) => {
 
   // 방 나가는 함수
   const out = () => {
-    console.log('클릭여');
-    history.push('/chatmain');
-    socket.emit('leaveRoom', {
-      accessToken: token,
-      room_id: roomId,
-    });
+    const confirm = window.confirm('정말 채팅방을 나가시겠습니까?');
+    if (confirm) {
+      history.push('/chatmain');
+      socket.emit('leaveRoom', {
+        accessToken: token,
+        room_id: roomId,
+      });
+    }
   };
   return (
     <Container bgColor={bgColor}>

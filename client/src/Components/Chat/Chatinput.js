@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Socket } from 'socket.io-client';
 import styled from 'styled-components';
 import { MainYellow } from '../../Assets/Color/Color';
 import { ReactComponent as Sendicon_svg } from '../../Assets/Image/Sendicon.svg';
