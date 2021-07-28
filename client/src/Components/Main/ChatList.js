@@ -7,7 +7,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { modeState } from '../../Recoil/ThemeMode';
 import { MainBlack } from '../../Assets/Color/Color';
 
@@ -88,8 +88,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ChatList() {
+  // 현재 로그인된 유저
   const user = useRecoilValue(userState);
-  const participants = useRecoilValue(participantState);
+  // 참가자 리스트 recoil 에서 불러오기
+  const [Participants, setParticipants] = useRecoilState(participantState);
+  // 만드는 방 이름 recoil 에서 불러오기
   const roomName = useRecoilValue(CreateRoomState);
   const token = user.userToken;
   const [Users, setUsers] = useState([]);
@@ -118,11 +121,12 @@ function ChatList() {
     currentSocket.emit('roomCreate', {
       accessToken: token,
       roomname: roomName,
-      participant: participants,
+      participant: Participants,
     });
-    console.log(token);
-    console.log(participants);
-    console.log(roomName);
+    // 생성 후 recoil 초기화 하고 main 으로.
+    setParticipants([]);
+    console.log(Participants);
+    window.location.replace('/chatmain');
   };
 
   // 다크모드 설정

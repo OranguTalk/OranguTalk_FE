@@ -62,6 +62,15 @@ const Count = styled.span`
   color: ${MainBrown};
 `;
 
+const NoneInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  font-family: 'Kakao-Regular';
+  font-size: 1.4rem;
+`;
+
 function List({ socket, token }) {
   const [Rooms, setRooms] = useState([]);
   const newkey = cookie.load('accessToken');
@@ -71,16 +80,18 @@ function List({ socket, token }) {
         const rooms = (await GetUserRooms(newkey)).data.data;
         setRooms(rooms);
         console.log(rooms);
+        console.log(Rooms);
       } catch (error) {
         console.log(error);
       }
     };
     fetchRooms();
   }, []);
-  if (!Rooms) {
+  if (Rooms.length === 0) {
+    // if (!Rooms) {
     return (
       <>
-        <p> 아직 채팅이 없네요.채팅을 시작해보세요. </p>
+        <NoneInfo> 아직 채팅이 없네요. 채팅을 시작해보세요. </NoneInfo>
       </>
     );
   } else {
