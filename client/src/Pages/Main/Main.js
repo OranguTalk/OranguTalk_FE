@@ -24,10 +24,12 @@ function Main() {
     const user_profile = (localStorage.profile = cookie.load('profile'));
     const user_accessToken = (localStorage.profile =
       cookie.load('accessToken'));
+    const user_id = (localStorage.userid = cookie.load('userid'));
     setUser({
       username: user_name,
       profile: user_profile,
       userToken: user_accessToken,
+      userId: user_id,
     });
   };
   useEffect(() => {

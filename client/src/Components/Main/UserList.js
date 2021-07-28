@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { AllUsersInfo } from '../../Api/User';
 import { MainBlack, MainYellow } from '../../Assets/Color/Color';
 import { CreateRoomState } from '../../Recoil/CreateRoom';
-import { participantState } from '../../Recoil/user';
+import { participantState, userState } from '../../Recoil/user';
 
 const ProfileImg = styled.img`
   width: 40px;
@@ -41,8 +41,13 @@ function UserList({ users }) {
     useRecoilState(participantState);
   const [RecoilCreateRoom, setRecoilCreateRoom] =
     useRecoilState(CreateRoomState);
-  const [Participants, setParticipants] = useState([]);
+  const user_id = useRecoilValue(userState).userId;
+  const [Participants, setParticipants] = useState([Number(user_id)]);
+
+  // 참가자 추가하는 함수
   const parcitipantAdd = (participant) => {
+    console.log(user_id);
+    console.log(Participants);
     // 버튼 효과
     if (!RecoilParticipant.includes(participant.user_id)) {
       // 추가하는 경우
