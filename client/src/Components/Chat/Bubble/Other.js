@@ -85,7 +85,7 @@ const Other = ({ avatar, username, chat, time }) => {
 
   return (
     <Container>
-      <ProfileImg src={Orang} />
+      <ProfileImg src={(!avatar && Orang) || avatar} />
       <ChatContainer>
         <UserName>{username}</UserName>
         <ContentContainer>

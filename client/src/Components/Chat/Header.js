@@ -100,6 +100,16 @@ const ModalItemimg = styled.img`
   border-radius: 10px;
 `;
 
+const OutButton = styled.button`
+  border: 1px solid ${(props) => props.color};
+  border-radius: 10px;
+  background: none;
+  color: ${(props) => props.color};
+  font-size: 0.8rem;
+  font-family: 'Kakao-Regular';
+  width: 50px;
+`;
+
 const Header = ({ room_id, socket }) => {
   const [open, setOpen] = useState(false);
   const [roomUserList, setroomUserList] = useState([]);
@@ -170,7 +180,9 @@ const Header = ({ room_id, socket }) => {
         <Text onClick={handleOpenParticipantList} textColor={textColor}>
           {roominfo.room_name}
         </Text>
-        <button onClick={out}>나가기버튼</button>
+        <OutButton color={textColor} onClick={out}>
+          나가기
+        </OutButton>
         <ToggleBtn />
       </ContentContainer>
       <Modal

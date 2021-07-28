@@ -66,9 +66,6 @@ const Chatinput = ({ room_id, socket }) => {
       room_id: roomId,
       message: Chat,
     });
-    console.log(token);
-    console.log(Chat);
-    console.log(typeof roomId);
   };
 
   return (
