@@ -15,6 +15,8 @@ const Container = styled.div`
 const Chatroom = ({ room_id }) => {
   // recoil 값 저장
   const user = useRecoilValue(userState);
+  // 유민 :: recoil 값이 잘 안 받아와지는 것 같아서 일단 localStorage 값으로 해놨습니다.
+  const userid = localStorage.userid;
   const [Chats, setChats] = useState([]);
   useEffect(() => {
     const fetchChats = async () => {
@@ -33,7 +35,8 @@ const Chatroom = ({ room_id }) => {
     Chats.length > 0 &&
     Chats.map(
       (info) =>
-        (info.chatInfo.user_id === user.userId && (
+        // 유민 :: userid 값이 string 이라서 int 값으로 교체 했어요
+        (info.chatInfo.user_id === Number(userid) && (
           <My
             chat={info.chatInfo.message}
             time={
