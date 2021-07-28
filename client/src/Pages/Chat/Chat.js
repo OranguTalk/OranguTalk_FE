@@ -12,23 +12,14 @@ const Container = styled.div`
 
 const Chat = ({ match }) => {
   const location = useLocation();
-  console.log(location.socket);
-  const [ChatListInfo, setChatListInfo] = useState({});
-  // const [RoomName, setRoomName] = useState('');
+  const socket = location.socket;
   const room_id = match.params.id;
   // 채팅방 정보, 내역 조회 api 실행
   return (
     <Container>
-      <button
-        onClick={() => {
-          console.log(ChatListInfo);
-        }}
-      >
-        TESTSESTS
-      </button>
-      <Header room_id={room_id} />
-      <Chatroom />
-      <Chatinput />
+      <Header room_id={room_id} socket={socket} />
+      <Chatroom room_id={room_id} />
+      <Chatinput room_id={room_id} socket={socket} />
     </Container>
   );
 };

@@ -3,6 +3,8 @@ import { Socket } from 'socket.io-client';
 import styled from 'styled-components';
 import { MainYellow } from '../../Assets/Color/Color';
 import { ReactComponent as Sendicon_svg } from '../../Assets/Image/Sendicon.svg';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../../Recoil/user';
 
 const Container = styled.div`
   display: flex;
@@ -36,19 +38,37 @@ const SendIcon = styled.div`
   }
 `;
 
-const Chatinput = ({ socket }) => {
+const Chatinput = ({ room_id, socket }) => {
+  // roomid int 형으로 변환
+  const roomId = Number(room_id);
+  const user = useRecoilValue(userState);
+  const token = user.userToken;
   const [Chat, setChat] = useState('');
 
   const onChangeChatText = (e) => {
     setChat(e.target.value);
   };
-
   // 입력값 보내기
   const handleSendmessage = (e) => {
-    if (e.key === 'Enter') {
-      // socket.emit('sendMessage', { Chat });
-      setChat({ ...Chat, content: '' });
-    }
+    // console.log(' 클릭클릭');
+    // if (e.key === 13) {
+    //   console.log('엔터엔터');
+    //   // setChat({ ...Chat, content: '' });
+    //   socket.emit('sendMessage', {
+    //     accessToken: token,
+    //     room_id: room_id,
+    //     message: Chat,
+    //   });
+    // }
+    socket.emit('sendMessage', {
+      accessToken: token,
+      // 형변환
+      room_id: roomId,
+      message: Chat,
+    });
+    console.log(token);
+    console.log(Chat);
+    console.log(typeof roomId);
   };
 
   return (

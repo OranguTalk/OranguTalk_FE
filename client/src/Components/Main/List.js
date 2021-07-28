@@ -70,6 +70,7 @@ function List({ socket, token }) {
       try {
         const rooms = (await GetUserRooms(newkey)).data.data;
         setRooms(rooms);
+        console.log(rooms);
       } catch (error) {
         console.log(error);
       }

@@ -1,10 +1,12 @@
 import axios from 'axios';
 
+// 모든 유저 정보 API
 export const AllUsersInfo = () => {
   const allUserInfo = axios.get('/users/getAllUsersInfo');
   return allUserInfo;
 };
 
+// 현재 로그인된 유저의 채팅 리스트 API
 export const GetUserRooms = (newkey) => {
   const getUserRooms = axios.get('/rooms/getRooms', {
     headers: {
