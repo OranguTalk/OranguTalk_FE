@@ -12,10 +12,10 @@ import { modeState } from '../../Recoil/ThemeMode';
 import { MainBlack } from '../../Assets/Color/Color';
 
 import socketIOClient from 'socket.io-client';
-import { AllUsersInfo } from '../../Api/User';
+import { AllUsersInfo, GetUserRooms } from '../../Api/User';
 import { participantState, userState } from '../../Recoil/user';
 import UserList from './UserList';
-import { CreateRoomState } from '../../Recoil/CreateRoom';
+import { CreateRoomState, RoomNumState } from '../../Recoil/CreateRoom';
 
 const ChatListDIv = styled.div`
   margin: 0 auto;
@@ -78,8 +78,8 @@ const useStyles = makeStyles((theme) => ({
     width: 360,
   },
   paper: {
-    width: 200,
-    height: 300,
+    width: 250,
+    height: 350,
     backgroundColor: theme.palette.background.paper,
     borderRadius: 8,
     boxShadow: theme.shadows[5],
@@ -94,9 +94,10 @@ function ChatList() {
   const [Participants, setParticipants] = useRecoilState(participantState);
   // 만드는 방 이름 recoil 에서 불러오기
   const roomName = useRecoilValue(CreateRoomState);
+  // 채팅방 개수
+  const roomNum = useRecoilValue(RoomNumState);
   const token = user.userToken;
   const [Users, setUsers] = useState([]);
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -109,7 +110,6 @@ function ChatList() {
     };
     fetchUsers();
   }, []);
-
   // 서버세팅
   const [currentSocket, setCurrentSocket] = useState();
   useEffect(() => {
@@ -147,7 +147,11 @@ function ChatList() {
   return (
     <ChatListDIv bgColor2={bgColor2}>
       <p>
-        <p>채팅</p>
+        <p>
+          채팅
+          <span> ({roomNum})</span>
+        </p>
+
         <p onClick={handleOpen}>+</p>
       </p>
       <Modal
@@ -163,7 +167,7 @@ function ChatList() {
         <Fade in={open}>
           <ModalDiv className={classes.paper}>
             <p>채팅방 생성</p>
-            <p>채팅방을 생성해보세요.</p>
+            {/* <p>채팅방을 생성해보세요.</p> */}
             <UserList users={Users} />
             <CreateBtn onClick={CreateRoom}>생성</CreateBtn>
           </ModalDiv>

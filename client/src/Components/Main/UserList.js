@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { AllUsersInfo } from '../../Api/User';
-import { MainBlack, MainYellow } from '../../Assets/Color/Color';
+import { MainBlack, MainBrown, MainYellow } from '../../Assets/Color/Color';
 import { CreateRoomState } from '../../Recoil/CreateRoom';
 import { participantState, userState } from '../../Recoil/user';
 
@@ -16,12 +16,10 @@ const UserBox = styled.p`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   & p:nth-last-child(1) {
     font-family: 'Kakao-Bold';
     color: black;
-    /* border: 2px solid ${MainYellow}; */
-    /* background-color: ${MainBlack}; */
     padding: 8px;
     border-radius: 12px;
     font-size: 1.3rem;
@@ -29,13 +27,25 @@ const UserBox = styled.p`
 `;
 
 const UserDiv = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 230px;
   /* background-color: blue; */
   overflow-y: scroll;
-  margin: 15px 0;
+  margin: 5px 0 15px 0;
 `;
 
+const Input = styled.input`
+  width: 200px;
+  height: 15px;
+  border: none;
+  margin: 8% 0;
+  padding: 2px;
+  font-size: 1.3rem;
+  font-family: 'Kakao-Regular';
+  &:focus {
+    border-bottom: 1px solid ${MainBrown};
+  }
+`;
 function UserList({ users }) {
   const [RecoilParticipant, setRecoilParticipant] =
     useRecoilState(participantState);
@@ -78,8 +88,11 @@ function UserList({ users }) {
 
   return (
     <>
+      <Input
+        placeholder="만들 채팅방의 제목을 입력하세요."
+        onChange={onChange}
+      />
       <UserDiv>
-        <input placeholder="여기에 채팅방 제목" onChange={onChange} />
         {users.allUserInfo.map((user) => (
           <UserBox>
             <ProfileImg src={user.profileImage} alt="profileImage" />
@@ -89,10 +102,10 @@ function UserList({ users }) {
             </p>
           </UserBox>
         ))}
-        <p>
+        {/* <p>
           추가된 참가자 목록:
           {renderParticipants()}
-        </p>
+        </p> */}
       </UserDiv>
     </>
   );

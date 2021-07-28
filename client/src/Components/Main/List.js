@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import { MainBlack, MainBrown } from '../../Assets/Color/Color';
 import { GetUserRooms } from '../../Api/User';
 import cookie from 'react-cookies';
+import { useRecoilState } from 'recoil';
+import { RoomNumState } from '../../Recoil/CreateRoom';
 
 const ChatDiv = styled.div`
   margin: 0 auto;
@@ -60,6 +62,7 @@ const Count = styled.span`
   font-family: 'Kakao-Regular';
   font-size: 0.8rem;
   color: ${MainBrown};
+  margin-left: 8px;
 `;
 
 const NoneInfo = styled.div`
@@ -73,14 +76,16 @@ const NoneInfo = styled.div`
 
 function List({ socket, token }) {
   const [Rooms, setRooms] = useState([]);
+  const [Num, setNum] = useRecoilState(RoomNumState);
   const newkey = cookie.load('accessToken');
   useEffect(() => {
     const fetchRooms = async () => {
       try {
         const rooms = (await GetUserRooms(newkey)).data.data;
         setRooms(rooms);
+        setNum(rooms.length);
         console.log(rooms);
-        console.log(Rooms);
+        console.log(Num);
       } catch (error) {
         console.log(error);
       }
