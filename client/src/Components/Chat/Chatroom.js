@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import My from './Bubble/My';
 import Other from './Bubble/Other';
 import Statusbar from './Statusbar';
 import Test from '../../Assets/Image/Test.jpg';
 import orangu from '../../Assets/Image/orangu1.png';
+import { ChatList } from '../../Api/User';
 
 const Container = styled.div`
   height: 80vh;
   overflow-y: scroll;
 `;
 
-const Chatroom = () => {
+// 채팅 리스트 불러오는 api
+const Chatroom = ({ room_id }) => {
+  const [Chats, setChats] = useState({});
+  useEffect(() => {
+    const fetchChats = async () => {
+      try {
+        const chats = (await ChatList(room_id)).data.chatInfo;
+        console.log(chats);
+        setChats(chats);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchChats();
+  }, []);
   return (
     <Container>
       <Statusbar username={'민석이'} />

@@ -13,6 +13,7 @@ import Test from '../../Assets/Image/Test.jpg';
 
 import { MainBlack, MainYellow } from '../../Assets/Color/Color';
 import { ChatList, GetUserListInRoom } from '../../Api/User';
+import { userState } from '../../Recoil/user';
 
 const Container = styled.div`
   width: 100%;
@@ -99,10 +100,16 @@ const ModalItemimg = styled.img`
   border-radius: 10px;
 `;
 
-const Header = ({ room_id, room_info }) => {
+const Header = ({ room_id, socket }) => {
   const [open, setOpen] = useState(false);
   const [roomUserList, setroomUserList] = useState([]);
   const [roominfo, setroominfo] = useState({});
+  // room_id int 로 형 변환
+  const roomId = Number(room_id);
+  // usertoken
+  const user = useRecoilValue(userState);
+  const token = user.userToken;
+  // 다크모드 설정
   const current = useRecoilValue(modeState);
   const bgColor = current.bgColor;
   const textColor = current.textColor;
@@ -137,7 +144,7 @@ const Header = ({ room_id, room_info }) => {
       try {
         //const chatList = (await ChatList(room_id)).data;
         const chatList = (await ChatList(room_id)).data.roomInfo;
-        // console.log(chatList);
+        console.log(chatList);
         setroominfo(chatList);
       } catch (error) {
         console.log(error);
@@ -147,6 +154,15 @@ const Header = ({ room_id, room_info }) => {
     fetchChat();
   }, []);
 
+  // 방 나가는 함수
+  const out = () => {
+    console.log('클릭여');
+    history.push('/chatmain');
+    socket.emit('leaveRoom', {
+      accessToken: token,
+      room_id: roomId,
+    });
+  };
   return (
     <Container bgColor={bgColor}>
       <ContentContainer>
@@ -154,6 +170,7 @@ const Header = ({ room_id, room_info }) => {
         <Text onClick={handleOpenParticipantList} textColor={textColor}>
           {roominfo.room_name}
         </Text>
+        <button onClick={out}>나가기버튼</button>
         <ToggleBtn />
       </ContentContainer>
       <Modal
