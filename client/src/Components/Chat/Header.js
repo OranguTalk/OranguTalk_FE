@@ -12,7 +12,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Test from '../../Assets/Image/Test.jpg';
 
 import { MainBlack, MainYellow } from '../../Assets/Color/Color';
-import { GetUserListInRoom } from '../../Api/User';
+import { ChatList, GetUserListInRoom } from '../../Api/User';
 
 const Container = styled.div`
   width: 100%;
@@ -102,6 +102,7 @@ const ModalItemimg = styled.img`
 const Header = ({ room_id, room_info }) => {
   const [open, setOpen] = useState(false);
   const [roomUserList, setroomUserList] = useState([]);
+  const [roominfo, setroominfo] = useState({});
   const current = useRecoilValue(modeState);
   const bgColor = current.bgColor;
   const textColor = current.textColor;
@@ -121,19 +122,28 @@ const Header = ({ room_id, room_info }) => {
   const handleCloseParticipantList = () => {
     setOpen(false);
   };
-
   // 채팅방 인원 리스트 api 실행
   useEffect(() => {
     const fetchChat = async () => {
       try {
         const chat = (await GetUserListInRoom(room_id)).data;
         setroomUserList(chat);
-        console.log(room_info);
-        // setRoomName(room_info.roomInfo.room_name);
+        console.log(chat);
       } catch (error) {
         console.log(error);
       }
     };
+    const fetchChatList = async () => {
+      try {
+        //const chatList = (await ChatList(room_id)).data;
+        const chatList = (await ChatList(room_id)).data.roomInfo;
+        // console.log(chatList);
+        setroominfo(chatList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchChatList();
     fetchChat();
   }, []);
 
@@ -142,7 +152,7 @@ const Header = ({ room_id, room_info }) => {
       <ContentContainer>
         <ArrowLeft onClick={back} fill={textColor} width={25} height={25} />
         <Text onClick={handleOpenParticipantList} textColor={textColor}>
-          {/* {room_info.roomInfo.room_name} */}
+          {roominfo.room_name}
         </Text>
         <ToggleBtn />
       </ContentContainer>
