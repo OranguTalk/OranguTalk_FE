@@ -82,7 +82,6 @@ function List({ socket, textColor2 }) {
         setRooms(rooms);
         setNum(rooms.length);
         console.log(rooms);
-        console.log(Num);
       } catch (error) {
         console.log(error);
       }
