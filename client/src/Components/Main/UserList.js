@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { MainBrown } from '../../Assets/Color/Color';
+import { MainBrown, MainYellow } from '../../Assets/Color/Color';
 import { CreateRoomState } from '../../Recoil/CreateRoom';
 import { participantState, userState } from '../../Recoil/user';
 
@@ -14,35 +14,53 @@ const ProfileImg = styled.img`
 const UserBox = styled.p`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   margin-bottom: 10px;
+  width: 250px;
   & p:nth-last-child(1) {
     font-family: 'Kakao-Bold';
     color: black;
-    padding: 8px;
-    border-radius: 12px;
-    font-size: 1.3rem;
+    width: 70px;
+    text-align: center;
   }
+  & p:nth-last-child(2) {
+    display: flex;
+    width: 200px;
+    align-items: center;
+  }
+`;
+
+const AddText = styled.span`
+  color: black;
+  font-size: 1.5rem;
+  text-align: center;
+`;
+
+const UserName = styled.span`
+  font-size: 1.5rem;
+  font-family: 'Kakao-Regular';
+  margin-left: 12px;
 `;
 
 const UserDiv = styled.div`
   width: 250px;
-  height: 230px;
+  height: 250px;
+  min-width: 250px;
   /* background-color: blue; */
   overflow-y: scroll;
   margin: 5px 0 15px 0;
 `;
 
 const Input = styled.input`
-  width: 200px;
+  width: 230px;
   height: 15px;
   border: none;
   margin: 8% 0;
-  padding: 2px;
-  font-size: 1.3rem;
+  padding: 5px;
+  font-size: 1.5rem;
   font-family: 'Kakao-Regular';
   &:focus {
-    border-bottom: 1px solid ${MainBrown};
+    border-bottom: 2px solid ${MainYellow};
   }
 `;
 function UserList({ users }) {
@@ -68,7 +86,7 @@ function UserList({ users }) {
       setParticipants(newList);
       // recoil 에 저장
       setRecoilParticipant(newList);
-      document.getElementById(participant.user_id).innerText = '선택완료';
+      document.getElementById(participant.user_id).innerText = '선택';
       document.getElementById(participant.user_id).style.color = '#FF6C6C';
     }
   };
@@ -96,14 +114,17 @@ function UserList({ users }) {
       <Input
         placeholder="만들 채팅방의 제목을 입력하세요."
         onChange={onChange}
+        maxLength="15"
       />
       <UserDiv>
         {FilterUsers.map((user) => (
           <UserBox>
-            <ProfileImg src={user.profileImage} alt="profileImage" />
-            <p key={user}>{user.user_name}</p>
-            <p id={user.user_id} onClick={() => parcitipantAdd(user)}>
-              추가
+            <p key={user}>
+              <ProfileImg src={user.profileImage} alt="profileImage" />
+              <UserName>{user.user_name}</UserName>
+            </p>
+            <p onClick={() => parcitipantAdd(user)}>
+              <AddText id={user.user_id}>추가</AddText>
             </p>
           </UserBox>
         ))}

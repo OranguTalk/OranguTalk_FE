@@ -16,11 +16,16 @@ const LoginDiv = styled.div`
   & > div {
     display: flex;
     align-items: center;
-    height: 100px;
+    height: 80px;
   }
-  & span {
+  & span:nth-child(1) {
     display: inline-block;
     font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+  & span:nth-child(2) {
+    display: block;
+    font-size: 1.5rem;
     margin-bottom: 10px;
   }
 `;
@@ -31,8 +36,7 @@ function Login() {
       <LoginDiv>
         <p>
           <span>환영합니다! </span>
-          <br />
-          깃허브 계정으로 로그인해주세요.
+          <span>깃허브 계정으로 로그인해주세요.</span>
         </p>
         <div>
           <Button />

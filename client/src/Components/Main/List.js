@@ -14,16 +14,20 @@ const ChatDiv = styled.div`
   justify-content: space-around;
   width: 300px;
   height: 70px;
-  /* overflow-y: scroll; */
-
-  & > div {
-    width: 220px;
+  max-height: 70px;
+  & > div:nth-child(1) {
+    width: 80px;
+    text-align: center;
+    /* margin-left: 15px; */
+  }
+  & > div:nth-child(2) {
+    width: 225px;
     /* margin-left: 15px; */
   }
 
   & > div > p:nth-child(1) {
     font-family: 'Kakao-Bold';
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: black;
   }
   & > div > p:nth-child(2) {
@@ -49,8 +53,8 @@ const StyledLink = styled(Link)`
 `;
 
 const ChatProfileImg = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 `;
 
@@ -58,7 +62,7 @@ const Count = styled.span`
   font-family: 'Kakao-Regular';
   font-size: 0.9rem;
   color: ${MainBrown};
-  margin-left: 8px;
+  margin-left: 5px;
 `;
 
 const NoneInfo = styled.div`
@@ -69,6 +73,10 @@ const NoneInfo = styled.div`
   font-family: 'Kakao-Regular';
   font-size: 1.4rem;
   color: ${(props) => props.textColor2};
+`;
+
+const Message = styled.p`
+  font-size: 1.1.rem;
 `;
 
 function List({ socket, textColor2 }) {
@@ -108,12 +116,17 @@ function List({ socket, textColor2 }) {
             }}
           >
             <ChatDiv>
-              <ChatProfileImg src={chatlist.profileImage} alt="Orang" />
+              <div>
+                {chatlist.avatars.map((src) => (
+                  <ChatProfileImg src={src} alt="Orang" />
+                ))}
+              </div>
               <div>
                 <p>
                   {chatlist.room_name}
                   <Count>{chatlist.participant}명</Count>
                 </p>
+                <Message>여기에는 최근 메세지가</Message>
               </div>
             </ChatDiv>
           </StyledLink>
