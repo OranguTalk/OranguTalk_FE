@@ -49,16 +49,6 @@ const Chatinput = ({ room_id, socket }) => {
   };
   // 입력값 보내기
   const handleSendmessage = (e) => {
-    // console.log(' 클릭클릭');
-    // if (e.key === 13) {
-    //   console.log('엔터엔터');
-    //   // setChat({ ...Chat, content: '' });
-    //   socket.emit('sendMessage', {
-    //     accessToken: token,
-    //     room_id: room_id,
-    //     message: Chat,
-    //   });
-    // }
     socket.emit('sendMessage', {
       accessToken: token,
       // 형변환

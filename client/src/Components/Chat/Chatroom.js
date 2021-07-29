@@ -12,12 +12,20 @@ const Container = styled.div`
 `;
 
 // 채팅 리스트 불러오는 api
-const Chatroom = ({ room_id }) => {
+const Chatroom = ({ socket, room_id }) => {
   // recoil 값 저장
-  const user = useRecoilValue(userState);
+  // const user = useRecoilValue(userState);
   // 유민 :: recoil 값이 잘 안 받아와지는 것 같아서 일단 localStorage 값으로 해놨습니다.
   const userid = localStorage.userid;
   const [Chats, setChats] = useState([]);
+  const [recentChat, setRecentChat] = useState('');
+  useEffect(() => {
+    console.log(socket);
+    socket.on('sendMessage', (data) => {
+      console.log(data);
+    });
+  });
+
   useEffect(() => {
     const fetchChats = async () => {
       try {

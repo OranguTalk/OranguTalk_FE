@@ -17,7 +17,7 @@ const Chat = ({ match }) => {
   return (
     <Container>
       <Header room_id={room_id} socket={socket} />
-      <Chatroom room_id={room_id} />
+      <Chatroom room_id={room_id} socket={socket} />
       <Chatinput room_id={room_id} socket={socket} />
     </Container>
   );
