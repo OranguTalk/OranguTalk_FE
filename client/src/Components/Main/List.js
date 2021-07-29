@@ -14,7 +14,7 @@ const ChatDiv = styled.div`
   justify-content: space-around;
   width: 300px;
   height: 70px;
-  overflow-x: scroll;
+  /* overflow-y: scroll; */
 
   & > div {
     width: 220px;
