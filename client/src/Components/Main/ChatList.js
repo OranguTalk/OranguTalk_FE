@@ -24,7 +24,11 @@ const ChatListDIv = styled.div`
   background-color: ${(props) => props.bgColor2};
   border-radius: 40px 40px 0 0;
   bottom: 0;
+  /* overflow: scroll; */
+  // 채팅 글씨, + 버튼
   & > p {
+    z-index: 100;
+    /* position: fixed; */
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -71,6 +75,21 @@ const CreateBtn = styled.button`
   background-color: ${MainYellow};
   width: 250px;
   border-radius: 8px;
+`;
+
+const ListDiv = styled.div`
+  height: 69vh;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* &::-webkit-scrollbar-thumb {
+    height: 10%;
+    background-color: ${MainYellow};
+    border-radius: 50px;
+    background-clip: padding-box;
+    border: 5px solid transparent;
+  } */
 `;
 
 const useStyles = makeStyles((theme) => ({
@@ -181,7 +200,9 @@ function ChatList() {
           </ModalDiv>
         </Fade>
       </Modal>
-      <List socket={currentSocket} token={token} textColor2={textColor2} />
+      <ListDiv>
+        <List socket={currentSocket} token={token} textColor2={textColor2} />
+      </ListDiv>
     </ChatListDIv>
   );
 }

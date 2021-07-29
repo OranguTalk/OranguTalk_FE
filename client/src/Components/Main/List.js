@@ -7,27 +7,36 @@ import cookie from 'react-cookies';
 import { useRecoilState } from 'recoil';
 import { RoomNumState } from '../../Recoil/CreateRoom';
 
+// 채팅방 박스
 const ChatDiv = styled.div`
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
   width: 300px;
-  height: 70px;
-  max-height: 70px;
+  height: 80px;
+  overflow: hidden;
+  position: relative;
+  // 사진 div
   & > div:nth-child(1) {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    align-items: center;
+    justify-content: center;
     width: 80px;
-    text-align: center;
-    /* margin-left: 15px; */
+    height: 50px;
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
   }
   & > div:nth-child(2) {
     width: 225px;
+    padding: 10px;
     /* margin-left: 15px; */
   }
 
   & > div > p:nth-child(1) {
     font-family: 'Kakao-Bold';
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: black;
   }
   & > div > p:nth-child(2) {
@@ -56,13 +65,19 @@ const ChatProfileImg = styled.img`
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  border: 2.5px solid white;
+  /* position: relative; */
+  margin: -4px;
+  &:nth-of-type(2n-1) {
+    z-index: 100;
+  }
 `;
 
 const Count = styled.span`
   font-family: 'Kakao-Regular';
-  font-size: 0.9rem;
+  font-size: 1.4rem;
   color: ${MainBrown};
-  margin-left: 5px;
+  margin-left: 8px;
 `;
 
 const NoneInfo = styled.div`
@@ -82,6 +97,7 @@ const Message = styled.p`
 function List({ socket, textColor2 }) {
   const [Rooms, setRooms] = useState([]);
   const [Num, setNum] = useRecoilState(RoomNumState);
+  // const [Profiles, setProfiles] = useState([]);
   const newkey = cookie.load('accessToken');
   useEffect(() => {
     const fetchRooms = async () => {
@@ -96,6 +112,8 @@ function List({ socket, textColor2 }) {
     };
     fetchRooms();
   }, []);
+  // const profiles = Rooms.map((room) => room.avatars).slice(0, 4);
+  // console.log(profiles);
   if (Rooms.length === 0) {
     // if (!Rooms) {
     return (
@@ -117,14 +135,14 @@ function List({ socket, textColor2 }) {
           >
             <ChatDiv>
               <div>
-                {chatlist.avatars.map((src) => (
+                {chatlist.avatars.slice(0, 4).map((src) => (
                   <ChatProfileImg src={src} alt="Orang" />
                 ))}
               </div>
               <div>
                 <p>
                   {chatlist.room_name}
-                  <Count>{chatlist.participant}명</Count>
+                  <Count>{chatlist.participant}</Count>
                 </p>
                 <Message>여기에는 최근 메세지가</Message>
               </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { MainBrown, MainYellow } from '../../Assets/Color/Color';
+import { MainYellow } from '../../Assets/Color/Color';
 import { CreateRoomState } from '../../Recoil/CreateRoom';
 import { participantState, userState } from '../../Recoil/user';
 
