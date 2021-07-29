@@ -9,7 +9,7 @@ import Fade from '@material-ui/core/Fade';
 
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { modeState } from '../../Recoil/ThemeMode';
-import { MainBlack } from '../../Assets/Color/Color';
+import { MainBlack, MainYellow } from '../../Assets/Color/Color';
 
 import socketIOClient from 'socket.io-client';
 import { AllUsersInfo } from '../../Api/User';
@@ -64,10 +64,13 @@ const ModalDiv = styled.div`
 `;
 
 const CreateBtn = styled.button`
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: 'Kakao-Bold';
   border: none;
-  background-color: white;
+  height: 40px;
+  background-color: ${MainYellow};
+  width: 250px;
+  border-radius: 8px;
 `;
 
 const useStyles = makeStyles((theme) => ({
@@ -103,9 +106,6 @@ function ChatList() {
     const fetchUsers = async () => {
       try {
         const users = (await AllUsersInfo()).data;
-        // const filterUsers = users.allUserInfo.filter(
-        //   (user) => user.user_id !== Number(user_id),
-        // );
         setUsers(users);
       } catch (error) {
         console.log(error);
@@ -174,7 +174,7 @@ function ChatList() {
       >
         <Fade in={open}>
           <ModalDiv className={classes.paper}>
-            <p>채팅방 생성</p>
+            {/* <p>채팅방 생성</p> */}
             {/* <p>채팅방을 생성해보세요.</p> */}
             <UserList users={Users} />
             <CreateBtn onClick={CreateRoom}>생성</CreateBtn>
