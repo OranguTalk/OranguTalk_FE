@@ -55,6 +55,7 @@ const Chatinput = ({ room_id, socket }) => {
       room_id: roomId,
       message: Chat,
     });
+    setChat('');
   };
 
   return (
