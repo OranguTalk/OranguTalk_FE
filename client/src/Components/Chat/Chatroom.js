@@ -21,9 +21,6 @@ const Chatroom = ({ socket, room_id }) => {
   const [recentChat, setRecentChat] = useState('');
   useEffect(() => {
     console.log(socket);
-    socket.on('sendMessage', (data) => {
-      console.log(data);
-    });
   });
 
   useEffect(() => {
