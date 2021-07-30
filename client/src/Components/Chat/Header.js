@@ -31,7 +31,8 @@ const ContentContainer = styled.div`
 `;
 
 const Text = styled.span`
-  font-size: 2rem;
+  font-size: 1.5rem;
+  width: 150px;
   color: ${(props) => props.textColor};
   margin-left: 15px;
   :active {

@@ -11,7 +11,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { modeState } from '../../Recoil/ThemeMode';
 import { MainBlack, MainYellow } from '../../Assets/Color/Color';
 
-import socketIOClient from 'socket.io-client';
+import io from 'socket.io-client';
 import { AllUsersInfo } from '../../Api/User';
 import { participantState, userState } from '../../Recoil/user';
 import UserList from './UserList';
@@ -136,7 +136,9 @@ function ChatList() {
   const [currentSocket, setCurrentSocket] = useState();
   useEffect(() => {
     // 서버와 연결
-    setCurrentSocket(socketIOClient('localhost:5000'));
+    setCurrentSocket(
+      io.connect('localhost:5000', { transports: ['websocket'] }),
+    );
   }, []);
   // 방 만드는 함수
   const CreateRoom = () => {
