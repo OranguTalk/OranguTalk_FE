@@ -147,7 +147,6 @@ const Header = ({ room_id, socket }) => {
       try {
         const chat = (await GetUserListInRoom(room_id)).data;
         setroomUserList(chat);
-        console.log(chat);
       } catch (error) {
         console.log(error);
       }
@@ -155,7 +154,6 @@ const Header = ({ room_id, socket }) => {
     const fetchChatList = async () => {
       try {
         const chatList = (await ChatList(room_id)).data.roomInfo;
-        console.log(chatList);
         setroominfo(chatList);
       } catch (error) {
         console.log(error);

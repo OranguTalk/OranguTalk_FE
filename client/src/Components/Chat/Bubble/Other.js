@@ -61,27 +61,27 @@ const Other = ({ avatar, username, chat, time }) => {
   const [isImage, SetisImage] = useState(false);
 
   // 이미지 확장자 확인하기
-  const IsImageType = () => {
-    const jsConfetti = new JSConfetti();
-    const result =
-      chat.includes('jpg') || chat.includes('jpeg') || chat.includes('png');
-    SetisImage(result);
+  // const IsImageType = () => {
+  //   const jsConfetti = new JSConfetti();
+  //   const result =
+  //     chat.includes('jpg') || chat.includes('jpeg') || chat.includes('png');
+  //   SetisImage(result);
 
-    if (result && chat.includes('orangu')) {
-      jsConfetti.addConfetti({
-        emojis: ['🙉'],
-        emojiSize: 100,
-        confettiRadius: 6,
-        confettiNumber: 50,
-      });
-    }
-  };
+  //   if (result && chat.includes('orangu')) {
+  //     jsConfetti.addConfetti({
+  //       emojis: ['🙉'],
+  //       emojiSize: 100,
+  //       confettiRadius: 6,
+  //       confettiNumber: 50,
+  //     });
+  //   }
+  // };
   const current = useRecoilValue(modeState);
   const textColor2 = current.textColor2;
 
-  useEffect(() => {
-    IsImageType();
-  }, []);
+  // useEffect(() => {
+  //   IsImageType();
+  // }, []);
 
   return (
     <Container>
@@ -89,11 +89,12 @@ const Other = ({ avatar, username, chat, time }) => {
       <ChatContainer>
         <UserName>{username}</UserName>
         <ContentContainer>
-          {isImage ? (
+          <ProfileContent textColor2={textColor2}>{chat}</ProfileContent>
+          {/* {isImage ? (
             <ContentImg src={chat} />
           ) : (
             <ProfileContent textColor2={textColor2}>{chat}</ProfileContent>
-          )}
+          )} */}
           <TimeText>{time}</TimeText>
         </ContentContainer>
       </ChatContainer>
