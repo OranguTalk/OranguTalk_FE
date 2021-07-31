@@ -83,13 +83,6 @@ const ListDiv = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  /* &::-webkit-scrollbar-thumb {
-    height: 10%;
-    background-color: ${MainYellow};
-    border-radius: 50px;
-    background-clip: padding-box;
-    border: 5px solid transparent;
-  } */
 `;
 
 const useStyles = makeStyles((theme) => ({
@@ -203,7 +196,12 @@ function ChatList() {
         </Fade>
       </Modal>
       <ListDiv>
-        <List socket={currentSocket} token={token} textColor2={textColor2} />
+        <List
+          socket={currentSocket}
+          token={token}
+          textColor2={textColor2}
+          bgColor2={bgColor2}
+        />
       </ListDiv>
     </ChatListDIv>
   );

@@ -107,7 +107,9 @@ const OutButton = styled.button`
   color: ${(props) => props.color};
   font-size: 0.8rem;
   font-family: 'Kakao-Regular';
-  width: 50px;
+  /* width: 50px; */
+  height: 20px;
+  min-width: 50px;
 `;
 
 const Header = ({ room_id, socket }) => {
