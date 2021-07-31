@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import My from './Bubble/My';
 import Other from './Bubble/Other';
 import { ChatList } from '../../Api/User';
-import { useRecoilValue } from 'recoil';
-import { userState } from '../../Recoil/user';
 
 const Container = styled.div`
   height: 80vh;
@@ -36,7 +34,6 @@ const Chatroom = ({ socket, room_id }) => {
 
   useEffect(() => {
     socket.on('receiveMessage', (data) => {
-      console.log(data);
       setRecentChat({
         user_id: data.userData.user_id,
         user_name: data.userData.user_name,
@@ -44,15 +41,29 @@ const Chatroom = ({ socket, room_id }) => {
         message: data.message,
       });
     });
-  }, []);
+    console.log(recentChat);
+  }, [recentChat, socket]);
 
   useEffect(() => {
     const result = () => {
-      const news = recentChat.length > 0 && NewChats.concat(recentChat);
-      setNewChats(news);
+      // 원래 채팅 갯수랑 새로운 챗 추가한 길이랑 비교해야함
+      // 이게 원래 채팅 길이
+      setNewChats(Chats.concat(recentChat));
+      const a = NewChats.length;
+      console.log(NewChats);
+      if (Chats.length > 0 && Chats.concat(recentChat).length > Chats.lenth) {
+        console.log(NewChats.length);
+      }
+      // > 0 && NewChats.concat(recentChat).length;
+      console.log(Chats);
+      console.log(recentChat);
+      // setNewChats(NewChats.concat(recentChat));
+      // console.log(NewChats);
+      // console.log(news);
+      // setNewChats(news);
     };
     result();
-  }, [recentChat]);
+  }, []);
 
   const renderChatList = () =>
     Chats.length > 0 &&
@@ -108,7 +119,7 @@ const Chatroom = ({ socket, room_id }) => {
               />
             ),
         )}
-      {NewChats.length > 0 &&
+      {/* {NewChats.length > 0 &&
         NewChats.map(
           (item) =>
             (Number(item.user_id) === Number(userid) && (
@@ -131,7 +142,7 @@ const Chatroom = ({ socket, room_id }) => {
                 }
               />
             ),
-        )}
+        )} */}
     </Container>
   );
 };

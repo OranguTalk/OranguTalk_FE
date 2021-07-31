@@ -65,7 +65,7 @@ const ChatProfileImg = styled.img`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 2.5px solid white;
+  border: 2px solid ${(props) => props.bgColor2};
   /* position: relative; */
   margin: -4px;
   &:nth-of-type(2n-1) {
@@ -94,7 +94,7 @@ const Message = styled.p`
   font-size: 1.1.rem;
 `;
 
-function List({ socket, textColor2 }) {
+function List({ socket, textColor2, bgColor2 }) {
   const [Rooms, setRooms] = useState([]);
   const [Num, setNum] = useRecoilState(RoomNumState);
   // const [Profiles, setProfiles] = useState([]);
@@ -136,7 +136,7 @@ function List({ socket, textColor2 }) {
             <ChatDiv>
               <div>
                 {chatlist.avatars.slice(0, 4).map((src) => (
-                  <ChatProfileImg src={src} alt="Orang" />
+                  <ChatProfileImg bgColor2={bgColor2} src={src} alt="Orang" />
                 ))}
               </div>
               <div>
