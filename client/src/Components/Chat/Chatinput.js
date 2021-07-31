@@ -49,6 +49,7 @@ const Chatinput = ({ room_id, socket }) => {
   };
   // 입력값 보내기
   const handleSendmessage = (e) => {
+    console.log('SEND FINISHED');
     socket.emit('sendMessage', {
       accessToken: token,
       // 형변환
